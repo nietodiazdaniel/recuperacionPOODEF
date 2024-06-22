@@ -38,4 +38,13 @@ public abstract class Ataque {
     }
     public abstract void realizarAtaque (Zombie zombie,Casilla objetivo, Juego juego);
     
+    public String toText() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append("Potencia: ").append(potencia).append("\n");
+        sb.append("Valor de Éxito: ").append(valorExito).append("\n");
+        sb.append("Alcance: ").append(alcance).append("\n");
+        return sb.toString();
+    }
+    
 }

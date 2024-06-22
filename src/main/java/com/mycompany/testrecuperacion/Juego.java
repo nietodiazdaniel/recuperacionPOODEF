@@ -240,7 +240,7 @@ public class Juego {
                     Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
                     Casilla posicion = tablero.getCasilla(coor);
                     Humano humano = Humano.aparicion(posicion);
-                    pantallaJuego.agregarEvento("Ha aparecido un Humano "+humano.getClass().getSimpleName()+" en la posicion "+coor.toString());
+                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
                     this.listaHumanos.add(humano);
                     tablero.getCasilla(coor).getNumHumano().add(humano);
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
@@ -317,7 +317,7 @@ public class Juego {
                     Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
                     Casilla posicion = tablero.getCasilla(coor);
                     Humano humano = Humano.aparicion(posicion);
-                    pantallaJuego.agregarEvento("Ha aparecido un Humano "+humano.getClass().getSimpleName()+" en la posicion "+coor.toString());
+                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
                     this.listaHumanos.add(humano);
                     tablero.getCasilla(coor).getNumHumano().add(humano);
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
@@ -397,7 +397,7 @@ public class Juego {
                     Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
                     Casilla posicion = tablero.getCasilla(coor);
                     Humano humano = Humano.aparicion(posicion);
-                    pantallaJuego.agregarEvento("Ha aparecido un Humano "+humano.getClass().getSimpleName()+" en la posicion "+coor.toString());
+                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
                     this.listaHumanos.add(humano);
                     tablero.getCasilla(coor).getNumHumano().add(humano);
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
@@ -481,7 +481,7 @@ public class Juego {
                     Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
                     Casilla posicion = tablero.getCasilla(coor);
                     Humano humano = Humano.aparicion(posicion);
-                    pantallaJuego.agregarEvento("Ha aparecido un Humano "+humano.getClass().getSimpleName()+" en la posicion "+coor.toString());
+                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
                     this.listaHumanos.add(humano);
                     tablero.getCasilla(coor).getNumHumano().add(humano);
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
@@ -498,5 +498,23 @@ public class Juego {
         }).start();
     }
 
-    
+    public String toText() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Numero de Jugadores: ").append(numJug).append("\n");
+        sb.append("Tablero: ").append(tablero.toText()).append("\n");
+        sb.append("Lista de Zombies:\n");
+        for (Zombie zombie : listaJugadores) {
+            sb.append(zombie.toText()).append("\n");
+        }
+        sb.append("Lista de Humanos:\n");
+        for (Humano humano : listaHumanos) {
+            sb.append(humano.toText()).append("\n");
+        }
+        sb.append("Lista de Conejos:\n");
+        for (Conejo conejo : listaConejos) {
+            sb.append(conejo.toText()).append("\n");
+        }
+        return sb.toString();
+    }
+
 }

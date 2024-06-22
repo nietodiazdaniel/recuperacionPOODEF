@@ -85,4 +85,11 @@ public abstract class Humano implements Comestible, Activable {
 
         return coormascerca;
     }
+    public String toText() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Número de Activaciones: ").append(num_activaciones).append("\n");
+        sb.append("Aguante: ").append(aguante).append("\n");
+        sb.append("Casilla: ").append(casilla.getCoordenada().toText()).append("\n");
+        return sb.toString();
+    }
 }

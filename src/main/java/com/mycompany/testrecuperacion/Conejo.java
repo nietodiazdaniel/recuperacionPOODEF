@@ -50,6 +50,12 @@ public class Conejo implements Comestible {
             zombie.setHambre(zombie.getHambre()-1);
         }
     }
-
+    public String toText() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append("Identificador: ").append(identificador).append("\n");
+        sb.append("Casilla: ").append(casilla.getCoordenada().toText()).append("\n");
+        return sb.toString();
+    }
     
 }

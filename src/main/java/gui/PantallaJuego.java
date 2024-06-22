@@ -24,7 +24,8 @@ import java.util.ArrayList;
  * @author nieto
  */
 public class PantallaJuego extends JFrame {
-
+    
+    private Juego juego;
     private JButton[][] botones;
     private int size;
     private JTextArea eventTextArea;
@@ -77,11 +78,11 @@ public class PantallaJuego extends JFrame {
         itemGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SimboloGuardar.png"))); // NOI18N
         itemGuardar.setText("Guardar");
         itemGuardar.setPreferredSize(new java.awt.Dimension(141, 32));
-        /*itemGuardar.addActionListener(new java.awt.event.ActionListener() {
+        itemGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemGuardarActionPerformed(evt);
             }
-        });*/
+        });
         menuArchivo.add(itemGuardar);
 
         itemSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -181,6 +182,7 @@ public class PantallaJuego extends JFrame {
     public void actualizarTablero(Juego juego) {
         listaHumanos = new ArrayList(juego.getListaHumanos());
         listaZombies = new ArrayList(juego.getListaJugadores());
+        this.juego=juego;
         Font fontSmall = new Font("Arial", Font.PLAIN, 10); // Aquí ajusta el tamaño de 12 según sea necesario
         Tablero tablero = juego.getTablero();
         for (int i = 0; i < size; i++) {
@@ -305,11 +307,15 @@ public class PantallaJuego extends JFrame {
         DialogVisualizarHeridas dialogH = new DialogVisualizarHeridas(null, listaZombies); // Crear instancia del JDialog
 
     }
+
     private void itemEliminacionesActionPerformed(java.awt.event.ActionEvent evt) {
 
         DialogVisualizarBajas dialogB = new DialogVisualizarBajas(null, listaZombies); // Crear instancia del JDialog
 
     }
 
-    
+    private void itemGuardarActionPerformed(java.awt.event.ActionEvent evt){
+        DialogGuardarPartida dialogG=new DialogGuardarPartida(null,this.juego);
+    }
+
 }

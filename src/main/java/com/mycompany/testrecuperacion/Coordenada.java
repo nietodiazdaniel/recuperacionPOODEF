@@ -57,4 +57,7 @@ public class Coordenada {
     public String toString() {
         return "{" + "x=" + x + ", y=" + y + '}';
     }
+    public String toText() {
+        return "(" + x + ", " + y + ")";
+    }
 }

@@ -105,7 +105,7 @@ public class Zombie implements Activable {
     public void agregarHerida(String tipoHumano) {
         if (heridasRecibidas.size() < maxHeridas) {
             heridasRecibidas.add(tipoHumano);
-        } 
+        }
     }
 
     public ArrayList<String> getHeridasRecibidas() {
@@ -345,10 +345,9 @@ public class Zombie implements Activable {
                 this.setNumAcciones(0);
 
             }
-            
 
         }
-        if(this.getCasilla().getCoordenada().equals(new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1))){
+        if (this.getCasilla().getCoordenada().equals(new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1))) {
             juego.getPantallaJuego().agregarEvento("El zombie " + this.getNombre() + " ha llegado a la casilla objetivo.");
         }
     }
@@ -456,6 +455,45 @@ public class Zombie implements Activable {
     public void noHacerNada(Juego juego) {
         juego.getPantallaJuego().agregarEvento("El zombie " + this.getNombre() + " no ha hecho nada");
         numAcciones++;
+    }
+
+    public String toText() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append("Estado: ").append(estado).append("\n");
+        sb.append("Máximo de Acciones: ").append(maxAcciones).append("\n");
+        sb.append("Número de Acciones: ").append(numAcciones).append("\n");
+        sb.append("Comestibles Devorados:\n");
+        for (Comestible comestible : comestiblesDevorados) {
+            if (comestible instanceof Humano humano) {
+                sb.append("Humano:\n");
+                sb.append(humano.toText()).append("\n");
+            } else if (comestible instanceof Conejo conejo) {
+                sb.append("Conejo:\n");
+                sb.append(conejo.toText()).append("\n");
+            }
+        }
+        sb.append("Comestibles Eliminados:\n");
+        for (Comestible comestible : comestiblesEliminados) {
+            if (comestible instanceof Humano humano) {
+                sb.append("Humano:\n");
+                sb.append(humano.toText()).append("\n");
+            } else if (comestible instanceof Conejo conejo) {
+                sb.append("Conejo:\n");
+                sb.append(conejo.toText()).append("\n");
+            }
+        }
+        sb.append("Número de Heridas: ").append(numHeridas).append("\n");
+        sb.append("Heridas Recibidas:\n");
+        for (String herida : heridasRecibidas) {
+            sb.append(herida).append("\n");
+        }
+        sb.append("Máximo de Heridas: ").append(maxHeridas).append("\n");
+        sb.append("Hambre: ").append(hambre).append("\n");
+        sb.append("Devorar:\n").append(devorar.toText()).append("\n");
+        sb.append("Ataque Especial:\n").append(ataqueEspecial.toText()).append("\n");
+        sb.append("Casilla: ").append(casilla.getCoordenada().toText()).append("\n");
+        return sb.toString();
     }
 }
 //PARA EL ATAQUE HACER EQUIPO=ATAQUE, VIVERES=ATAQUE ESPECIAL Y DEVORAR ES LO MISMO QUE UN ATAQUE ESPECIAL EN CONCRETO.
