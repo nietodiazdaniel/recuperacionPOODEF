@@ -439,7 +439,7 @@ public class Zombie implements Activable {
             int y = random1.nextInt(tablero.getFilas());
             Coordenada coord = new Coordenada(x, y);
             Casilla casillaConejo = tablero.getCasilla(coord);
-            Conejo nuevoConejo = new Conejo("ConejoPrueba", 1, casillaConejo);
+            Conejo nuevoConejo = new Conejo( 1, casillaConejo);
             ArrayList<Conejo> conejosEnCasilla = tablero.getCasilla(nuevoConejo.getCasilla().getCoordenada()).getNumConejos();
             conejosEnCasilla.add(nuevoConejo);
             tablero.getCasilla(nuevoConejo.getCasilla().getCoordenada()).setNumConejos(conejosEnCasilla);

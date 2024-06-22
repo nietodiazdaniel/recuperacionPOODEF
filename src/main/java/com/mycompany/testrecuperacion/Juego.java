@@ -127,10 +127,6 @@ public class Juego {
                 //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
             }
         }
-        Conejo con1 = new Conejo("Pep", 1, tablero.getCasilla(new Coordenada(1, 0)));
-        tablero.getCasilla(new Coordenada(1, 0)).getNumConejos().add(con1);
-        tablero.getCasilla(new Coordenada(1, 0)).setNumConejos(tablero.getCasilla(new Coordenada(1, 0)).getNumConejos());
-        this.listaConejos.add(con1);
 
         Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
         Casilla objetivo = tablero.getCasilla(nueva);
@@ -163,26 +159,7 @@ public class Juego {
             tablero.imprimirTablero();
         }
 
-        /*
-        Humano humano1 = new HumanoHuidizo(tablero.getCasilla(new Coordenada(2,1)));
-        tablero.getCasilla(new Coordenada(2,1)).getNumHumano().add(humano1);
-        tablero.getCasilla(new Coordenada(2,1)).setNumHumano(tablero.getCasilla(new Coordenada(2,1)).getNumHumano());
-        Humano humano2 = new HumanoHuidizo(tablero.getCasilla(new Coordenada(2,3)));
-        tablero.getCasilla(new Coordenada(2,3)).getNumHumano().add(humano2);
-        tablero.getCasilla(new Coordenada(2,3)).setNumHumano(tablero.getCasilla(new Coordenada(2,3)).getNumHumano());
-        Conejo con1=new Conejo("Pep",1,tablero.getCasilla(new Coordenada(1,0)));
-        tablero.getCasilla(new Coordenada(1,0)).getNumConejos().add(con1);
-        tablero.getCasilla(new Coordenada(1,0)).setNumConejos(tablero.getCasilla(new Coordenada(1,0)).getNumConejos());
-        Zombie zombie1 = tablero.getCasilla(inicio).getNumZombie().get(0);
-        Zombie zombie2 = tablero.getCasilla(inicio).getNumZombie().get(1);
-        tablero.imprimirTablero();
-
-        for(int i=0;i<=1;i++){
-            zombie1.activarse(this.tablero,this);
-            zombie2.activarse(this.tablero,this);
-            
-        }
-         */
+       
     }
 
     public void iniciarJuegoGUI(String nom1) {
@@ -207,10 +184,6 @@ public class Juego {
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
-            Conejo con1 = new Conejo("Pep", 1, tablero.getCasilla(new Coordenada(1, 0)));
-            tablero.getCasilla(new Coordenada(1, 0)).getNumConejos().add(con1);
-            tablero.getCasilla(new Coordenada(1, 0)).setNumConejos(tablero.getCasilla(new Coordenada(1, 0)).getNumConejos());
-            this.listaConejos.add(con1);
 
             Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
             Casilla objetivo = tablero.getCasilla(nueva);
@@ -284,10 +257,7 @@ public class Juego {
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
-            Conejo con1 = new Conejo("Pep", 1, tablero.getCasilla(new Coordenada(1, 0)));
-            tablero.getCasilla(new Coordenada(1, 0)).getNumConejos().add(con1);
-            tablero.getCasilla(new Coordenada(1, 0)).setNumConejos(tablero.getCasilla(new Coordenada(1, 0)).getNumConejos());
-            this.listaConejos.add(con1);
+            
 
             Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
             Casilla objetivo = tablero.getCasilla(nueva);
@@ -364,10 +334,7 @@ public class Juego {
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
-            Conejo con1 = new Conejo("Pep", 1, tablero.getCasilla(new Coordenada(1, 0)));
-            tablero.getCasilla(new Coordenada(1, 0)).getNumConejos().add(con1);
-            tablero.getCasilla(new Coordenada(1, 0)).setNumConejos(tablero.getCasilla(new Coordenada(1, 0)).getNumConejos());
-            this.listaConejos.add(con1);
+            
 
             Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
             Casilla objetivo = tablero.getCasilla(nueva);
@@ -448,10 +415,7 @@ public class Juego {
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
-            Conejo con1 = new Conejo("Pep", 1, tablero.getCasilla(new Coordenada(1, 0)));
-            tablero.getCasilla(new Coordenada(1, 0)).getNumConejos().add(con1);
-            tablero.getCasilla(new Coordenada(1, 0)).setNumConejos(tablero.getCasilla(new Coordenada(1, 0)).getNumConejos());
-            this.listaConejos.add(con1);
+            
 
             Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
             Casilla objetivo = tablero.getCasilla(nueva);

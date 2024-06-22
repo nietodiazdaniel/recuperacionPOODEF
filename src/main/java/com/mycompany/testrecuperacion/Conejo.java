@@ -4,6 +4,8 @@
  */
 package com.mycompany.testrecuperacion;
 
+import java.util.Random;
+
 /**
  *
  * @author nieto
@@ -13,8 +15,19 @@ public class Conejo implements Comestible {
     private int identificador;
     private Casilla casilla;
 
-    public Conejo(String nombre, int identificador,Casilla casilla) {
-        this.nombre = nombre;
+    
+    private static final String[] NOMBRES_CONEJOS = {
+        "Conejo Saltarín",
+        "Brincos",
+        "Orejas Largas",
+        "Pelusa",
+        "Colita Blanca",
+        "Zanahoria"
+    };
+     
+     
+    public Conejo(int identificador,Casilla casilla) {
+        this.nombre = NOMBRES_CONEJOS[new Random().nextInt(NOMBRES_CONEJOS.length)];
         this.identificador = identificador;
         this.casilla=casilla;
     }
