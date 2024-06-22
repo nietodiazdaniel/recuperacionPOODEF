@@ -8,6 +8,10 @@ import gui.*;
 import gui.PantallaJuego;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -479,6 +483,25 @@ public class Juego {
         }
         sb.append("Tablero: ").append(tablero.toText()).append("\n");
         return sb.toString();
+    }
+    public void cargarJuego(File selectedFile){
+        try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
+            String linea;
+            int numeroJugadores;
+            while ((linea = br.readLine()) != null) {
+                // Procesar cada línea según la estructura del archivo
+                if (linea.startsWith("Número de Jugadores:")) {
+                    // Procesar número de jugadores
+                    numeroJugadores = Integer.parseInt(linea.split(":")[1].trim());
+                } else if (linea.startsWith("Lista de Zombies:")) {
+                    
+                } else if (linea.startsWith("Nombre:")) {
+                    
+                }
+            }
+        } catch (IOException e) {
+            //ERROR AL LEER ARCHIVO
+        }
     }
 
 }
