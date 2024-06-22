@@ -19,12 +19,27 @@ Conejos:
 
 Coordenada: (0, 3)
 Zombies:
+Humanos:
+Conejos:
+
+Coordenada: (0, 4)
+Zombies:
 Nombre: dani
 Estado: ACTIVO
 Máximo de Acciones: 3
 Número de Acciones: 0
 Comestibles Devorados:
+Humano:
+Número de Activaciones: 2
+Aguante: 1
+Casilla: (0, 3)
+
 Comestibles Eliminados:
+Humano:
+Número de Activaciones: 2
+Aguante: 1
+Casilla: (1, 4)
+
 Número de Heridas: 1
 Heridas Recibidas:
 Especialista
@@ -37,22 +52,13 @@ Valor de Éxito: 4
 Alcance: 0
 
 Ataque Especial:
-Nombre: Vendaval de Garras
-Potencia: 2
-Valor de Éxito: 2
-Alcance: 4
+Nombre: Lluvia de Huesos
+Potencia: 4
+Valor de Éxito: 4
+Alcance: 3
 
-Casilla: (0, 3)
+Casilla: (0, 4)
 
-Humanos:
-Número de Activaciones: 2
-Aguante: 1
-Casilla: (0, 3)
-
-Conejos:
-
-Coordenada: (0, 4)
-Zombies:
 Humanos:
 Conejos:
 
@@ -79,10 +85,6 @@ Conejos:
 Coordenada: (1, 1)
 Zombies:
 Humanos:
-Número de Activaciones: 1
-Aguante: 3
-Casilla: (1, 1)
-
 Conejos:
 
 Coordenada: (1, 2)
@@ -98,10 +100,6 @@ Conejos:
 Coordenada: (1, 4)
 Zombies:
 Humanos:
-Número de Activaciones: 1
-Aguante: 1
-Casilla: (1, 4)
-
 Conejos:
 
 Coordenada: (1, 5)
@@ -124,7 +122,7 @@ Zombies:
 Nombre: javi
 Estado: ACTIVO
 Máximo de Acciones: 3
-Número de Acciones: 0
+Número de Acciones: 1
 Comestibles Devorados:
 Conejo:
 Nombre: Pep
@@ -143,10 +141,10 @@ Valor de Éxito: 4
 Alcance: 0
 
 Ataque Especial:
-Nombre: Tsunami de Sangre
+Nombre: Sombra de la Muerte
 Potencia: 3
 Valor de Éxito: 3
-Alcance: 2
+Alcance: 1
 
 Casilla: (2, 0)
 
@@ -191,6 +189,10 @@ Conejos:
 Coordenada: (3, 0)
 Zombies:
 Humanos:
+Número de Activaciones: 1
+Aguante: 3
+Casilla: (3, 0)
+
 Conejos:
 
 Coordenada: (3, 1)
@@ -236,11 +238,7 @@ Conejos:
 Coordenada: (4, 1)
 Zombies:
 Humanos:
-Número de Activaciones: 1
-Aguante: 2
-Casilla: (4, 1)
-
-Número de Activaciones: 1
+Número de Activaciones: 2
 Aguante: 1
 Casilla: (4, 1)
 
@@ -254,6 +252,10 @@ Conejos:
 Coordenada: (4, 3)
 Zombies:
 Humanos:
+Número de Activaciones: 2
+Aguante: 1
+Casilla: (4, 3)
+
 Conejos:
 
 Coordenada: (4, 4)
@@ -269,10 +271,6 @@ Conejos:
 Coordenada: (4, 6)
 Zombies:
 Humanos:
-Número de Activaciones: 2
-Aguante: 1
-Casilla: (4, 6)
-
 Conejos:
 
 Coordenada: (4, 7)
@@ -293,6 +291,10 @@ Conejos:
 Coordenada: (5, 2)
 Zombies:
 Humanos:
+Número de Activaciones: 1
+Aguante: 1
+Casilla: (5, 2)
+
 Conejos:
 
 Coordenada: (5, 3)
@@ -303,6 +305,10 @@ Conejos:
 Coordenada: (5, 4)
 Zombies:
 Humanos:
+Número de Activaciones: 1
+Aguante: 2
+Casilla: (5, 4)
+
 Conejos:
 
 Coordenada: (5, 5)
@@ -313,6 +319,10 @@ Conejos:
 Coordenada: (5, 6)
 Zombies:
 Humanos:
+Número de Activaciones: 1
+Aguante: 2
+Casilla: (5, 6)
+
 Conejos:
 
 Coordenada: (5, 7)
@@ -348,10 +358,6 @@ Conejos:
 Coordenada: (6, 5)
 Zombies:
 Humanos:
-Número de Activaciones: 1
-Aguante: 1
-Casilla: (6, 5)
-
 Conejos:
 
 Coordenada: (6, 6)
@@ -362,10 +368,6 @@ Conejos:
 Coordenada: (6, 7)
 Zombies:
 Humanos:
-Número de Activaciones: 1
-Aguante: 1
-Casilla: (6, 7)
-
 Conejos:
 
 Coordenada: (7, 0)
@@ -415,7 +417,17 @@ Estado: ACTIVO
 Máximo de Acciones: 3
 Número de Acciones: 0
 Comestibles Devorados:
+Humano:
+Número de Activaciones: 2
+Aguante: 1
+Casilla: (0, 3)
+
 Comestibles Eliminados:
+Humano:
+Número de Activaciones: 2
+Aguante: 1
+Casilla: (1, 4)
+
 Número de Heridas: 1
 Heridas Recibidas:
 Especialista
@@ -428,17 +440,17 @@ Valor de Éxito: 4
 Alcance: 0
 
 Ataque Especial:
-Nombre: Vendaval de Garras
-Potencia: 2
-Valor de Éxito: 2
-Alcance: 4
+Nombre: Lluvia de Huesos
+Potencia: 4
+Valor de Éxito: 4
+Alcance: 3
 
-Casilla: (0, 3)
+Casilla: (0, 4)
 
 Nombre: javi
 Estado: ACTIVO
 Máximo de Acciones: 3
-Número de Acciones: 0
+Número de Acciones: 1
 Comestibles Devorados:
 Conejo:
 Nombre: Pep
@@ -457,44 +469,36 @@ Valor de Éxito: 4
 Alcance: 0
 
 Ataque Especial:
-Nombre: Tsunami de Sangre
+Nombre: Sombra de la Muerte
 Potencia: 3
 Valor de Éxito: 3
-Alcance: 2
+Alcance: 1
 
 Casilla: (2, 0)
 
 Lista de Humanos:
 Número de Activaciones: 1
-Aguante: 2
-Casilla: (4, 1)
-
-Número de Activaciones: 1
 Aguante: 1
-Casilla: (6, 5)
-
-Número de Activaciones: 1
-Aguante: 1
-Casilla: (6, 7)
-
-Número de Activaciones: 2
-Aguante: 1
-Casilla: (0, 3)
-
-Número de Activaciones: 1
-Aguante: 1
-Casilla: (1, 4)
-
-Número de Activaciones: 1
-Aguante: 1
-Casilla: (4, 1)
-
-Número de Activaciones: 2
-Aguante: 1
-Casilla: (4, 6)
+Casilla: (5, 2)
 
 Número de Activaciones: 1
 Aguante: 3
-Casilla: (1, 1)
+Casilla: (3, 0)
+
+Número de Activaciones: 2
+Aguante: 1
+Casilla: (4, 1)
+
+Número de Activaciones: 1
+Aguante: 2
+Casilla: (5, 4)
+
+Número de Activaciones: 1
+Aguante: 2
+Casilla: (5, 6)
+
+Número de Activaciones: 2
+Aguante: 1
+Casilla: (4, 3)
 
 Lista de Conejos:
