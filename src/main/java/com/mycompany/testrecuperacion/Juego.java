@@ -501,7 +501,6 @@ public class Juego {
     public String toText() {
         StringBuilder sb = new StringBuilder();
         sb.append("Numero de Jugadores: ").append(numJug).append("\n");
-        sb.append("Tablero: ").append(tablero.toText()).append("\n");
         sb.append("Lista de Zombies:\n");
         for (Zombie zombie : listaJugadores) {
             sb.append(zombie.toText()).append("\n");
@@ -514,6 +513,7 @@ public class Juego {
         for (Conejo conejo : listaConejos) {
             sb.append(conejo.toText()).append("\n");
         }
+        sb.append("Tablero: ").append(tablero.toText()).append("\n");
         return sb.toString();
     }
 
