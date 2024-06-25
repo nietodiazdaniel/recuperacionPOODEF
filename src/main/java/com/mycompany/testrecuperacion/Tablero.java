@@ -131,12 +131,6 @@ public class Tablero {
         StringBuilder sb = new StringBuilder();
         sb.append("Filas: ").append(filas).append("\n");
         sb.append("Columnas: ").append(columnas).append("\n");
-        sb.append("Casillas:\n");
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                sb.append(casillas[i][j].toText()).append("\n");
-            }
-        }
         return sb.toString();
     }
 

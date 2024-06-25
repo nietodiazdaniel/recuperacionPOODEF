@@ -461,8 +461,8 @@ public class Zombie implements Activable {
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre: ").append(nombre).append("\n");
         sb.append("Estado: ").append(estado).append("\n");
-        sb.append("Máximo de Acciones: ").append(maxAcciones).append("\n");
         sb.append("Número de Acciones: ").append(numAcciones).append("\n");
+        sb.append("Numero de Comestibles Devorados: ").append(comestiblesDevorados.size()).append("\n");
         sb.append("Comestibles Devorados:\n");
         for (Comestible comestible : comestiblesDevorados) {
             if (comestible instanceof Humano humano) {
@@ -473,6 +473,7 @@ public class Zombie implements Activable {
                 sb.append(conejo.toText()).append("\n");
             }
         }
+        sb.append("Numero de Comestibles Eliminados: ").append(comestiblesEliminados.size()).append("\n");
         sb.append("Comestibles Eliminados:\n");
         for (Comestible comestible : comestiblesEliminados) {
             if (comestible instanceof Humano humano) {
@@ -488,9 +489,7 @@ public class Zombie implements Activable {
         for (String herida : heridasRecibidas) {
             sb.append(herida).append("\n");
         }
-        sb.append("Máximo de Heridas: ").append(maxHeridas).append("\n");
         sb.append("Hambre: ").append(hambre).append("\n");
-        sb.append("Devorar:\n").append(devorar.toText()).append("\n");
         sb.append("Ataque Especial:\n").append(ataqueEspecial.toText()).append("\n");
         sb.append("Casilla: ").append(casilla.getCoordenada().toText()).append("\n");
         return sb.toString();

@@ -30,6 +30,10 @@ public class Juego {
     private ArrayList<Conejo> listaConejos = new ArrayList<>();
     private PantallaJuego pantallaJuego;
 
+    public Juego() {
+
+    }
+
     public Juego(int numJug) {
         this.numJug = numJug;
         this.tablero = new Tablero(numJug);
@@ -163,7 +167,6 @@ public class Juego {
             tablero.imprimirTablero();
         }
 
-       
     }
 
     public void iniciarJuegoGUI(String nom1) {
@@ -261,7 +264,6 @@ public class Juego {
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
-            
 
             Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
             Casilla objetivo = tablero.getCasilla(nueva);
@@ -338,7 +340,6 @@ public class Juego {
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
-            
 
             Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
             Casilla objetivo = tablero.getCasilla(nueva);
@@ -419,7 +420,6 @@ public class Juego {
                     //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
-            
 
             Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
             Casilla objetivo = tablero.getCasilla(nueva);
@@ -469,36 +469,69 @@ public class Juego {
     public String toText() {
         StringBuilder sb = new StringBuilder();
         sb.append("Numero de Jugadores: ").append(numJug).append("\n");
-        sb.append("Lista de Zombies:\n");
-        for (Zombie zombie : listaJugadores) {
-            sb.append(zombie.toText()).append("\n");
-        }
-        sb.append("Lista de Humanos:\n");
-        for (Humano humano : listaHumanos) {
-            sb.append(humano.toText()).append("\n");
-        }
+        sb.append("Numero de Conejos: ").append(listaConejos.size()).append("\n");
         sb.append("Lista de Conejos:\n");
         for (Conejo conejo : listaConejos) {
             sb.append(conejo.toText()).append("\n");
         }
-        sb.append("Tablero: ").append(tablero.toText()).append("\n");
+        sb.append("Numero de Humanos: ").append(listaHumanos.size()).append("\n");
+        sb.append("Lista de Humanos:\n");
+        for (Humano humano : listaHumanos) {
+            sb.append(humano.toText()).append("\n");
+        }
+        sb.append("Lista de Zombies:\n");
+        for (Zombie zombie : listaJugadores) {
+            sb.append(zombie.toText()).append("\n");
+        }
+
         return sb.toString();
     }
-    public void cargarJuego(File selectedFile){
+
+    public void cargarJuego(File selectedFile) {
+        int numeroConejos;
+
         try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
             String linea;
-            int numeroJugadores;
             while ((linea = br.readLine()) != null) {
-                // Procesar cada línea según la estructura del archivo
-                if (linea.startsWith("Número de Jugadores:")) {
-                    // Procesar número de jugadores
-                    numeroJugadores = Integer.parseInt(linea.split(":")[1].trim());
-                } else if (linea.startsWith("Lista de Zombies:")) {
-                    
-                } else if (linea.startsWith("Nombre:")) {
-                    
+                if (linea.startsWith("Numero de Jugadores:")) {
+                    int numeroJugadores = Integer.parseInt(linea.split(":")[1].trim());
+                    this.tablero = new Tablero(numeroJugadores);
+                } else if (linea.startsWith("Numero de Conejos:")) {
+                    numeroConejos = Integer.parseInt(linea.split(":")[1].trim());
+                    linea = br.readLine();//LEE Lista de COnejos:
+                    for (int i = 0; i < numeroConejos; i++) {
+                        String nombre = "";
+                        int identificador = 0;
+                        Coordenada coordenada = null;
+                        linea = br.readLine();
+                        if (linea.startsWith("Nombre: ")) {
+                            nombre = linea.substring("Nombre: ".length());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Identificador: ")) {
+                            identificador = Integer.parseInt(linea.split(":")[1].trim());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Casilla: ")) {
+                            int inicioCoordenada = linea.indexOf("(") + 1;
+                            int finCoordenada = linea.indexOf(")");
+                            String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
+                            String[] partesCoordenada = coordenadaStr.split(",");
+                            int x = Integer.parseInt(partesCoordenada[0].trim());
+                            int y = Integer.parseInt(partesCoordenada[1].trim());
+                            coordenada = new Coordenada(x, y);
+
+                        }
+                        linea = br.readLine();
+                        Conejo conejo = new Conejo(nombre, identificador, this.tablero.getCasilla(coordenada));
+                        ArrayList<Conejo> conejosEnCasilla = tablero.getCasilla(conejo.getCasilla().getCoordenada()).getNumConejos();
+                        conejosEnCasilla.add(conejo);
+                        tablero.getCasilla(conejo.getCasilla().getCoordenada()).setNumConejos(conejosEnCasilla);
+                        this.listaConejos.add(conejo);
+                    }
                 }
             }
+
         } catch (IOException e) {
             //ERROR AL LEER ARCHIVO
         }

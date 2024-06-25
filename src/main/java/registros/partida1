@@ -1,0 +1,81 @@
+Tablero: 
+Filas: 8
+Columnas: 8
+Numero de Conejos: 2
+Lista de Conejos:
+Nombre: Brincos
+Identificador: 1
+Casilla: (2, 5)
+
+Nombre: Orejas Largas
+Identificador: 1
+Casilla: (5, 4)
+
+Numero de Humanos: 7
+Lista de Humanos:
+Número de Activaciones: 2
+Aguante: 1
+Casilla: (4, 4)
+
+Número de Activaciones: 1
+Aguante: 2
+Casilla: (1, 1)
+
+Número de Activaciones: 1
+Aguante: 3
+Casilla: (4, 2)
+
+Número de Activaciones: 1
+Aguante: 1
+Casilla: (4, 6)
+
+Número de Activaciones: 2
+Aguante: 1
+Casilla: (4, 0)
+
+Número de Activaciones: 1
+Aguante: 1
+Casilla: (3, 0)
+
+Número de Activaciones: 1
+Aguante: 1
+Casilla: (5, 7)
+
+Numero de Jugadores: 2
+Lista de Zombies:
+Nombre: dani
+Estado: ACTIVO
+Número de Acciones: 0
+Numero de Comestibles Devorados: 0
+Comestibles Devorados:
+Numero de Comestibles Eliminados: 0
+Comestibles Eliminados:
+Número de Heridas: 0
+Heridas Recibidas:
+Hambre: 1
+Ataque Especial:
+Nombre: Sombra de la Muerte
+Potencia: 3
+Valor de Éxito: 3
+Alcance: 1
+
+Casilla: (0, 0)
+
+Nombre: javi
+Estado: ACTIVO
+Número de Acciones: 0
+Numero de Comestibles Devorados: 0
+Comestibles Devorados:
+Numero de Comestibles Eliminados: 0
+Comestibles Eliminados:
+Número de Heridas: 0
+Heridas Recibidas:
+Hambre: 0
+Ataque Especial:
+Nombre: Sombra de la Muerte
+Potencia: 3
+Valor de Éxito: 3
+Alcance: 1
+
+Casilla: (0, 0)
+

@@ -31,6 +31,11 @@ public class Conejo implements Comestible {
         this.identificador = identificador;
         this.casilla=casilla;
     }
+    public Conejo(String nombre,int identificador,Casilla casilla) {
+        this.nombre = nombre;
+        this.identificador = identificador;
+        this.casilla=casilla;
+    }
 
     public String getNombre() {
         return nombre;

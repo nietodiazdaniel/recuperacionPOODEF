@@ -54,18 +54,6 @@ public class Casilla {
     public String toText() {
         StringBuilder sb = new StringBuilder();
         sb.append("Coordenada: ").append(coordenada.toText()).append("\n");
-        sb.append("Zombies:\n");
-        for (Zombie zombie : numZombie) {
-            sb.append(zombie.toText()).append("\n");
-        }
-        sb.append("Humanos:\n");
-        for (Humano humano : numHumano) {
-            sb.append(humano.toText()).append("\n");
-        }
-        sb.append("Conejos:\n");
-        for (Conejo conejo : numConejos) {
-            sb.append(conejo.toText()).append("\n");
-        }
         return sb.toString();
     }
 }
