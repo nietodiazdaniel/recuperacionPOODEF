@@ -469,6 +469,10 @@ public class Juego {
     public String toText() {
         StringBuilder sb = new StringBuilder();
         sb.append("Numero de Jugadores: ").append(numJug).append("\n");
+        sb.append("Lista de Zombies:\n");
+        for (Zombie zombie : listaJugadores) {
+            sb.append(zombie.toText()).append("\n");
+        }
         sb.append("Numero de Conejos: ").append(listaConejos.size()).append("\n");
         sb.append("Lista de Conejos:\n");
         for (Conejo conejo : listaConejos) {
@@ -478,10 +482,6 @@ public class Juego {
         sb.append("Lista de Humanos:\n");
         for (Humano humano : listaHumanos) {
             sb.append(humano.toText()).append("\n");
-        }
-        sb.append("Lista de Zombies:\n");
-        for (Zombie zombie : listaJugadores) {
-            sb.append(zombie.toText()).append("\n");
         }
 
         return sb.toString();
@@ -495,101 +495,8 @@ public class Juego {
                 if (linea.startsWith("Numero de Jugadores:")) {
                     numeroJugadores = Integer.parseInt(linea.split(":")[1].trim());
                     this.tablero = new Tablero(numeroJugadores);
-                    this.numJug=numeroJugadores;
-                } else if (linea.startsWith("Numero de Conejos:")) {
-                    int numeroConejos = Integer.parseInt(linea.split(":")[1].trim());
-                    linea = br.readLine();//LEE Lista de COnejos:
-                    for (int i = 0; i < numeroConejos; i++) {
-                        String nombre = "";
-                        int identificador = 0;
-                        Coordenada coordenada = null;
-                        linea = br.readLine();
-                        if (linea.startsWith("Nombre: ")) {
-                            nombre = linea.substring("Nombre: ".length());
-                        }
-                        linea = br.readLine();
-                        if (linea.startsWith("Identificador: ")) {
-                            identificador = Integer.parseInt(linea.split(":")[1].trim());
-                        }
-                        linea = br.readLine();
-                        if (linea.startsWith("Casilla: ")) {
-                            int inicioCoordenada = linea.indexOf("(") + 1;
-                            int finCoordenada = linea.indexOf(")");
-                            String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
-                            String[] partesCoordenada = coordenadaStr.split(",");
-                            int x = Integer.parseInt(partesCoordenada[0].trim());
-                            int y = Integer.parseInt(partesCoordenada[1].trim());
-                            coordenada = new Coordenada(x, y);
-
-                        }
-                        linea = br.readLine();
-                        Conejo conejo = new Conejo(nombre, identificador, this.tablero.getCasilla(coordenada));
-                        ArrayList<Conejo> conejosEnCasilla = tablero.getCasilla(conejo.getCasilla().getCoordenada()).getNumConejos();
-                        conejosEnCasilla.add(conejo);
-                        tablero.getCasilla(conejo.getCasilla().getCoordenada()).setNumConejos(conejosEnCasilla);
-                        this.listaConejos.add(conejo);
-                    }
-                } else if (linea.startsWith("Numero de Humanos:")) {
-                    int numeroHumanos = Integer.parseInt(linea.split(":")[1].trim());
-                    linea = br.readLine();
-                    for (int i = 0; i < numeroHumanos; i++) {
-                        int numeroActivaciones = 0;
-                        int aguante = 0;
-                        Coordenada coordenada = null;
-                        String tipo = "";
-                        linea = br.readLine();
-                        if (linea.startsWith("Tipo: ")) {
-                            tipo = linea.substring("Tipo: ".length());
-                        }
-                        linea = br.readLine();
-                        if (linea.startsWith("Numero de Activaciones: ")) {
-                            numeroActivaciones = Integer.parseInt(linea.split(":")[1].trim());
-                        }
-                        linea = br.readLine();
-                        if (linea.startsWith("Aguante: ")) {
-                            aguante = Integer.parseInt(linea.split(":")[1].trim());
-                        }
-                        linea = br.readLine();
-                        if (linea.startsWith("Casilla: ")) {
-                            int inicioCoordenada = linea.indexOf("(") + 1;
-                            int finCoordenada = linea.indexOf(")");
-                            String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
-                            String[] partesCoordenada = coordenadaStr.split(",");
-                            int x = Integer.parseInt(partesCoordenada[0].trim());
-                            int y = Integer.parseInt(partesCoordenada[1].trim());
-                            coordenada = new Coordenada(x, y);
-                        }
-                        linea = br.readLine();
-                        switch (tipo) {
-                            case "Soldado":
-                                Soldado humano = new Soldado(this.tablero.getCasilla(coordenada));
-                                this.listaHumanos.add(humano);
-                                tablero.getCasilla(coordenada).getNumHumano().add(humano);
-                                break;
-                            case "Blindado":
-                                Blindado blindado = new Blindado(this.tablero.getCasilla(coordenada));
-                                this.listaHumanos.add(blindado);
-                                tablero.getCasilla(coordenada).getNumHumano().add(blindado);
-                                break;
-                            case "Especialista":
-                                Especialista espec = new Especialista(this.tablero.getCasilla(coordenada));
-                                this.listaHumanos.add(espec);
-                                tablero.getCasilla(coordenada).getNumHumano().add(espec);
-                                break;
-                            case "Huidizo":
-                                Huidizo huidizo = new Huidizo(this.tablero.getCasilla(coordenada));
-                                this.listaHumanos.add(huidizo);
-                                tablero.getCasilla(coordenada).getNumHumano().add(huidizo);
-                                break;
-                            case "Informatico":
-                                Informatico infor = new Informatico(this.tablero.getCasilla(coordenada));
-                                this.listaHumanos.add(infor);
-                                tablero.getCasilla(coordenada).getNumHumano().add(infor);
-                                break;
-
-                        }
-                    }
-                } else if (linea.startsWith("Lista de Zombies: ")) {
+                    this.numJug = numeroJugadores;
+                    linea=br.readLine();//LEE Lista de Zombies:
                     for (int i = 0; i < numeroJugadores; i++) {
                         String nombre = "";
                         String estado = "";
@@ -647,7 +554,6 @@ public class Juego {
                                         int y = Integer.parseInt(partesCoordenada[1].trim());
                                         coordenadaH = new Coordenada(x, y);
                                     }
-                                    linea = br.readLine();
                                     switch (tipo) {
                                         case "Soldado":
                                             Soldado humano = new Soldado(this.tablero.getCasilla(coordenadaH));
@@ -694,7 +600,6 @@ public class Juego {
                                         coordenadaC = new Coordenada(x, y);
 
                                     }
-                                    linea = br.readLine();
                                     Conejo conejo = new Conejo(nombreCon, identificador, this.tablero.getCasilla(coordenadaC));
                                     comestiblesDevorados.add(conejo);
                                 }
@@ -706,7 +611,7 @@ public class Juego {
                             linea = br.readLine();//LEE Comestibles Eliminados:
                             for (int j = 0; j < numEliminados; j++) {
                                 linea = br.readLine();
-                                if (linea.startsWith("Humano: ")) {
+                                if (linea.startsWith("Humano:")) {
                                     int numeroActivaciones = 0;
                                     int aguante = 0;
                                     Coordenada coordenadaH = null;
@@ -733,7 +638,6 @@ public class Juego {
                                         int y = Integer.parseInt(partesCoordenada[1].trim());
                                         coordenadaH = new Coordenada(x, y);
                                     }
-                                    linea = br.readLine();
                                     switch (tipo) {
                                         case "Soldado":
                                             Soldado humano = new Soldado(this.tablero.getCasilla(coordenadaH));
@@ -757,7 +661,7 @@ public class Juego {
                                             break;
 
                                     }
-                                } else if (linea.startsWith("Conejo: ")) {
+                                } else if (linea.startsWith("Conejo:")) {
                                     String nombreCon = "";
                                     int identificador = 0;
                                     Coordenada coordenadaC = null;
@@ -780,7 +684,6 @@ public class Juego {
                                         coordenadaC = new Coordenada(x, y);
 
                                     }
-                                    linea = br.readLine();
                                     Conejo conejo = new Conejo(nombreCon, identificador, this.tablero.getCasilla(coordenadaC));
                                     comestiblesEliminados.add(conejo);
                                 }
@@ -802,7 +705,7 @@ public class Juego {
                             hambre = Integer.parseInt(linea.split(":")[1].trim());
                         }
                         linea = br.readLine();
-                        if (linea.startsWith("Ataque Especial: ")) {
+                        if (linea.startsWith("Ataque Especial:")) {
                             String nombreAtaque = "";
                             int potencia = 0;
                             int valorExito = 0;
@@ -823,9 +726,9 @@ public class Juego {
                             if (linea.startsWith("Alcance: ")) {
                                 alcance = Integer.parseInt(linea.split(":")[1].trim());
                             }
+                            ataqueEspecial = new AtaqueEspecial(nombreAtaque, potencia, valorExito, alcance);
 
                         }
-                        linea = br.readLine();//LEE EL ESPACIO
                         linea = br.readLine();
                         if (linea.startsWith("Casilla:")) {
                             int inicioCoordenada = linea.indexOf("(") + 1;
@@ -836,9 +739,9 @@ public class Juego {
                             int y = Integer.parseInt(partesCoordenada[1].trim());
                             coor = new Coordenada(x, y);
                         }
-                        Casilla casillaZ= new Casilla(coor);
+                        Casilla casillaZ = new Casilla(coor);
                         //CREAMOS EL ZOMBIE
-                        Zombie zombie = new Zombie(nombre, estado, numHeridas, hambre,casillaZ);
+                        Zombie zombie = new Zombie(nombre, estado, numHeridas, hambre, casillaZ);
                         zombie.setNumAcciones(numAcciones);
                         zombie.setComestiblesDevorados(comestiblesDevorados);
                         zombie.setComestiblesEliminados(comestiblesEliminados);
@@ -847,8 +750,101 @@ public class Juego {
                         this.listaJugadores.add(zombie);
                         tablero.getCasilla(coor).getNumZombie().add(zombie);
                         tablero.getCasilla(coor).setNumZombie(tablero.getCasilla(coor).getNumZombie());
-                        
+
                     }
+                } else if (linea.startsWith("Numero de Conejos:")) {
+                    int numeroConejos = Integer.parseInt(linea.split(":")[1].trim());
+                    linea = br.readLine();//LEE Lista de COnejos:
+                    for (int i = 0; i < numeroConejos; i++) {
+                        String nombre = "";
+                        int identificador = 0;
+                        Coordenada coordenada = null;
+                        linea = br.readLine();
+                        if (linea.startsWith("Nombre: ")) {
+                            nombre = linea.substring("Nombre: ".length());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Identificador: ")) {
+                            identificador = Integer.parseInt(linea.split(":")[1].trim());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Casilla: ")) {
+                            int inicioCoordenada = linea.indexOf("(") + 1;
+                            int finCoordenada = linea.indexOf(")");
+                            String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
+                            String[] partesCoordenada = coordenadaStr.split(",");
+                            int x = Integer.parseInt(partesCoordenada[0].trim());
+                            int y = Integer.parseInt(partesCoordenada[1].trim());
+                            coordenada = new Coordenada(x, y);
+
+                        }
+                        Conejo conejo = new Conejo(nombre, identificador, this.tablero.getCasilla(coordenada));
+                        ArrayList<Conejo> conejosEnCasilla = tablero.getCasilla(conejo.getCasilla().getCoordenada()).getNumConejos();
+                        conejosEnCasilla.add(conejo);
+                        tablero.getCasilla(conejo.getCasilla().getCoordenada()).setNumConejos(conejosEnCasilla);
+                        this.listaConejos.add(conejo);
+                    }
+                } else if (linea.startsWith("Numero de Humanos:")) {
+                    int numeroHumanos = Integer.parseInt(linea.split(":")[1].trim());
+                    linea = br.readLine();
+                    for (int i = 0; i < numeroHumanos; i++) {
+                        int numeroActivaciones = 0;
+                        int aguante = 0;
+                        Coordenada coordenada = null;
+                        String tipo = "";
+                        linea = br.readLine();
+                        if (linea.startsWith("Tipo: ")) {
+                            tipo = linea.substring("Tipo: ".length());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Numero de Activaciones: ")) {
+                            numeroActivaciones = Integer.parseInt(linea.split(":")[1].trim());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Aguante: ")) {
+                            aguante = Integer.parseInt(linea.split(":")[1].trim());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Casilla: ")) {
+                            int inicioCoordenada = linea.indexOf("(") + 1;
+                            int finCoordenada = linea.indexOf(")");
+                            String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
+                            String[] partesCoordenada = coordenadaStr.split(",");
+                            int x = Integer.parseInt(partesCoordenada[0].trim());
+                            int y = Integer.parseInt(partesCoordenada[1].trim());
+                            coordenada = new Coordenada(x, y);
+                        }
+                        switch (tipo) {
+                            case "Soldado":
+                                Soldado humano = new Soldado(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(humano);
+                                tablero.getCasilla(coordenada).getNumHumano().add(humano);
+                                break;
+                            case "Blindado":
+                                Blindado blindado = new Blindado(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(blindado);
+                                tablero.getCasilla(coordenada).getNumHumano().add(blindado);
+                                break;
+                            case "Especialista":
+                                Especialista espec = new Especialista(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(espec);
+                                tablero.getCasilla(coordenada).getNumHumano().add(espec);
+                                break;
+                            case "Huidizo":
+                                Huidizo huidizo = new Huidizo(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(huidizo);
+                                tablero.getCasilla(coordenada).getNumHumano().add(huidizo);
+                                break;
+                            case "Informatico":
+                                Informatico infor = new Informatico(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(infor);
+                                tablero.getCasilla(coordenada).getNumHumano().add(infor);
+                                break;
+
+                        }
+                    }
+                } else if (linea.startsWith("Lista de Zombies: ")) {
+
                 }
             }
 

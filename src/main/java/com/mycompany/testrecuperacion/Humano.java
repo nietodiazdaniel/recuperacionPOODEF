@@ -90,7 +90,7 @@ public abstract class Humano implements Comestible, Activable {
         sb.append("Tipo: ").append(this.getClass().getSimpleName()).append("\n");
         sb.append("Número de Activaciones: ").append(num_activaciones).append("\n");
         sb.append("Aguante: ").append(aguante).append("\n");
-        sb.append("Casilla: ").append(casilla.getCoordenada().toText()).append("\n");
+        sb.append("Casilla: ").append(casilla.getCoordenada().toText());
         return sb.toString();
     }
 }

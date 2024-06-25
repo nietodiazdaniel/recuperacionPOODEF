@@ -72,7 +72,7 @@ public class Conejo implements Comestible {
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre: ").append(nombre).append("\n");
         sb.append("Identificador: ").append(identificador).append("\n");
-        sb.append("Casilla: ").append(casilla.getCoordenada().toText()).append("\n");
+        sb.append("Casilla: ").append(casilla.getCoordenada().toText());
         return sb.toString();
     }
     

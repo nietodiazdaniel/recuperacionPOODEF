@@ -498,8 +498,8 @@ public class Zombie implements Activable {
             sb.append(herida).append("\n");
         }
         sb.append("Hambre: ").append(hambre).append("\n");
-        sb.append("Ataque Especial:\n").append(ataqueEspecial.toText()).append("\n");
-        sb.append("Casilla: ").append(casilla.getCoordenada().toText()).append("\n");
+        sb.append("Ataque Especial:\n").append(ataqueEspecial.toText());
+        sb.append("Casilla: ").append(casilla.getCoordenada().toText());
         return sb.toString();
     }
 }

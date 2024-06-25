@@ -31,6 +31,11 @@ public class AtaqueEspecial extends Ataque {
         super(nombre, asignarPotencia(nombre), asignarValorExito(nombre), asignarAlcance(nombre));
     }
 
+    public AtaqueEspecial(String nombre, int potencia, int valorExito, int alcance) {
+        super(nombre, potencia, valorExito, alcance);
+    }
+    
+
     private static int asignarPotencia(String nombre) {
         switch (nombre) {
             case "Tsunami de Sangre":
