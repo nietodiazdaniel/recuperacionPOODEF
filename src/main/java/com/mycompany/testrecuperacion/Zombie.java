@@ -29,7 +29,7 @@ public class Zombie implements Activable {
     private Ataque devorar = new Devorar();
     private Ataque ataqueEspecial = new AtaqueEspecial();
     private Casilla casilla;
-
+    
     public Zombie(String nombre, String estado, int numHeridas, int hambre, Casilla casilla) {
         this.nombre = nombre;
         this.estado = estado;
@@ -97,7 +97,7 @@ public class Zombie implements Activable {
     public void setCasilla(Casilla casilla) {
         this.casilla = casilla;
     }
-
+    
     public void incrementarAcciones() {
         this.numAcciones++;
     }
@@ -108,6 +108,14 @@ public class Zombie implements Activable {
         }
     }
 
+    public void setHeridasRecibidas(ArrayList<String> heridasRecibidas) {
+        this.heridasRecibidas = heridasRecibidas;
+    }
+
+    public void setAtaqueEspecial(Ataque ataqueEspecial) {
+        this.ataqueEspecial = ataqueEspecial;
+    }
+    
     public ArrayList<String> getHeridasRecibidas() {
         return heridasRecibidas;
     }

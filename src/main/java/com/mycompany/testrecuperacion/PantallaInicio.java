@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.testrecuperacion;
- 
+
 import gui.DialogCargarPartida;
 import java.awt.Color;
 import java.io.File;
@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
  * @author nieto
  */
 public class PantallaInicio extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form PantallaInicio
      */
@@ -24,7 +24,7 @@ public class PantallaInicio extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +91,7 @@ public class PantallaInicio extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Seleccion sel = new Seleccion();
-        
+
         sel.setVisible(true);
         this.dispose();//nse si seria necesario
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -103,6 +103,9 @@ public class PantallaInicio extends javax.swing.JFrame {
         if (selectedFile != null) {
             //HAY ARCHIVO
             //METER LOGICA DE CARGARJUEGO DE LA CLASE JUEGO
+            Juego juego = new Juego(selectedFile);
+            juego.iniciarJuegoCargado();
+            this.dispose();
         } else {
             //NO HAY ARCHIVO
         }
@@ -111,7 +114,6 @@ public class PantallaInicio extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

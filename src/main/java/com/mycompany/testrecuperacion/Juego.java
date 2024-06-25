@@ -30,8 +30,8 @@ public class Juego {
     private ArrayList<Conejo> listaConejos = new ArrayList<>();
     private PantallaJuego pantallaJuego;
 
-    public Juego() {
-
+    public Juego(File selectedFile) {
+        this.cargarJuego(selectedFile);
     }
 
     public Juego(int numJug) {
@@ -488,16 +488,16 @@ public class Juego {
     }
 
     public void cargarJuego(File selectedFile) {
-        int numeroConejos;
-
+        int numeroJugadores = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (linea.startsWith("Numero de Jugadores:")) {
-                    int numeroJugadores = Integer.parseInt(linea.split(":")[1].trim());
+                    numeroJugadores = Integer.parseInt(linea.split(":")[1].trim());
                     this.tablero = new Tablero(numeroJugadores);
+                    this.numJug=numeroJugadores;
                 } else if (linea.startsWith("Numero de Conejos:")) {
-                    numeroConejos = Integer.parseInt(linea.split(":")[1].trim());
+                    int numeroConejos = Integer.parseInt(linea.split(":")[1].trim());
                     linea = br.readLine();//LEE Lista de COnejos:
                     for (int i = 0; i < numeroConejos; i++) {
                         String nombre = "";
@@ -529,12 +529,378 @@ public class Juego {
                         tablero.getCasilla(conejo.getCasilla().getCoordenada()).setNumConejos(conejosEnCasilla);
                         this.listaConejos.add(conejo);
                     }
+                } else if (linea.startsWith("Numero de Humanos:")) {
+                    int numeroHumanos = Integer.parseInt(linea.split(":")[1].trim());
+                    linea = br.readLine();
+                    for (int i = 0; i < numeroHumanos; i++) {
+                        int numeroActivaciones = 0;
+                        int aguante = 0;
+                        Coordenada coordenada = null;
+                        String tipo = "";
+                        linea = br.readLine();
+                        if (linea.startsWith("Tipo: ")) {
+                            tipo = linea.substring("Tipo: ".length());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Numero de Activaciones: ")) {
+                            numeroActivaciones = Integer.parseInt(linea.split(":")[1].trim());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Aguante: ")) {
+                            aguante = Integer.parseInt(linea.split(":")[1].trim());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Casilla: ")) {
+                            int inicioCoordenada = linea.indexOf("(") + 1;
+                            int finCoordenada = linea.indexOf(")");
+                            String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
+                            String[] partesCoordenada = coordenadaStr.split(",");
+                            int x = Integer.parseInt(partesCoordenada[0].trim());
+                            int y = Integer.parseInt(partesCoordenada[1].trim());
+                            coordenada = new Coordenada(x, y);
+                        }
+                        linea = br.readLine();
+                        switch (tipo) {
+                            case "Soldado":
+                                Soldado humano = new Soldado(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(humano);
+                                tablero.getCasilla(coordenada).getNumHumano().add(humano);
+                                break;
+                            case "Blindado":
+                                Blindado blindado = new Blindado(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(blindado);
+                                tablero.getCasilla(coordenada).getNumHumano().add(blindado);
+                                break;
+                            case "Especialista":
+                                Especialista espec = new Especialista(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(espec);
+                                tablero.getCasilla(coordenada).getNumHumano().add(espec);
+                                break;
+                            case "Huidizo":
+                                Huidizo huidizo = new Huidizo(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(huidizo);
+                                tablero.getCasilla(coordenada).getNumHumano().add(huidizo);
+                                break;
+                            case "Informatico":
+                                Informatico infor = new Informatico(this.tablero.getCasilla(coordenada));
+                                this.listaHumanos.add(infor);
+                                tablero.getCasilla(coordenada).getNumHumano().add(infor);
+                                break;
+
+                        }
+                    }
+                } else if (linea.startsWith("Lista de Zombies: ")) {
+                    for (int i = 0; i < numeroJugadores; i++) {
+                        String nombre = "";
+                        String estado = "";
+                        int numAcciones = 0;
+                        ArrayList<Comestible> comestiblesDevorados = new ArrayList<>();
+                        ArrayList<Comestible> comestiblesEliminados = new ArrayList<>();
+                        ArrayList<String> heridasRecibidas = new ArrayList<>();
+                        int numHeridas = 0;
+                        int hambre = 0;
+                        AtaqueEspecial ataqueEspecial = null;
+                        Coordenada coor = null;
+
+                        linea = br.readLine();
+                        if (linea.startsWith("Nombre: ")) {
+                            nombre = linea.substring("Nombre: ".length());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Estado: ")) {
+                            estado = linea.substring("Estado: ".length());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Número de Acciones: ")) {
+                            numAcciones = Integer.parseInt(linea.split(":")[1].trim());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Numero de Comestibles Devorados: ")) {
+                            int numDevorados = Integer.parseInt(linea.split(":")[1].trim());
+                            linea = br.readLine();//LEE Comestibles Devorados:
+                            for (int j = 0; j < numDevorados; j++) {
+                                linea = br.readLine();
+                                if (linea.startsWith("Humano: ")) {
+                                    int numeroActivaciones = 0;
+                                    int aguante = 0;
+                                    Coordenada coordenadaH = null;
+                                    String tipo = "";
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Tipo: ")) {
+                                        tipo = linea.substring("Tipo: ".length());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Numero de Activaciones: ")) {
+                                        numeroActivaciones = Integer.parseInt(linea.split(":")[1].trim());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Aguante: ")) {
+                                        aguante = Integer.parseInt(linea.split(":")[1].trim());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Casilla: ")) {
+                                        int inicioCoordenada = linea.indexOf("(") + 1;
+                                        int finCoordenada = linea.indexOf(")");
+                                        String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
+                                        String[] partesCoordenada = coordenadaStr.split(",");
+                                        int x = Integer.parseInt(partesCoordenada[0].trim());
+                                        int y = Integer.parseInt(partesCoordenada[1].trim());
+                                        coordenadaH = new Coordenada(x, y);
+                                    }
+                                    linea = br.readLine();
+                                    switch (tipo) {
+                                        case "Soldado":
+                                            Soldado humano = new Soldado(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesDevorados.add(humano);
+                                            break;
+                                        case "Blindado":
+                                            Blindado blindado = new Blindado(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesDevorados.add(blindado);
+                                            break;
+                                        case "Especialista":
+                                            Especialista espec = new Especialista(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesDevorados.add(espec);
+                                            break;
+                                        case "Huidizo":
+                                            Huidizo huidizo = new Huidizo(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesDevorados.add(huidizo);
+                                            break;
+                                        case "Informatico":
+                                            Informatico infor = new Informatico(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesDevorados.add(infor);
+                                            break;
+
+                                    }
+                                } else if (linea.startsWith("Conejo: ")) {
+                                    String nombreCon = "";
+                                    int identificador = 0;
+                                    Coordenada coordenadaC = null;
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Nombre: ")) {
+                                        nombreCon = linea.substring("Nombre: ".length());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Identificador: ")) {
+                                        identificador = Integer.parseInt(linea.split(":")[1].trim());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Casilla: ")) {
+                                        int inicioCoordenada = linea.indexOf("(") + 1;
+                                        int finCoordenada = linea.indexOf(")");
+                                        String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
+                                        String[] partesCoordenada = coordenadaStr.split(",");
+                                        int x = Integer.parseInt(partesCoordenada[0].trim());
+                                        int y = Integer.parseInt(partesCoordenada[1].trim());
+                                        coordenadaC = new Coordenada(x, y);
+
+                                    }
+                                    linea = br.readLine();
+                                    Conejo conejo = new Conejo(nombreCon, identificador, this.tablero.getCasilla(coordenadaC));
+                                    comestiblesDevorados.add(conejo);
+                                }
+                            }
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Numero de Comestibles Eliminados: ")) {
+                            int numEliminados = Integer.parseInt(linea.split(":")[1].trim());
+                            linea = br.readLine();//LEE Comestibles Eliminados:
+                            for (int j = 0; j < numEliminados; j++) {
+                                linea = br.readLine();
+                                if (linea.startsWith("Humano: ")) {
+                                    int numeroActivaciones = 0;
+                                    int aguante = 0;
+                                    Coordenada coordenadaH = null;
+                                    String tipo = "";
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Tipo: ")) {
+                                        tipo = linea.substring("Tipo: ".length());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Numero de Activaciones: ")) {
+                                        numeroActivaciones = Integer.parseInt(linea.split(":")[1].trim());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Aguante: ")) {
+                                        aguante = Integer.parseInt(linea.split(":")[1].trim());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Casilla: ")) {
+                                        int inicioCoordenada = linea.indexOf("(") + 1;
+                                        int finCoordenada = linea.indexOf(")");
+                                        String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
+                                        String[] partesCoordenada = coordenadaStr.split(",");
+                                        int x = Integer.parseInt(partesCoordenada[0].trim());
+                                        int y = Integer.parseInt(partesCoordenada[1].trim());
+                                        coordenadaH = new Coordenada(x, y);
+                                    }
+                                    linea = br.readLine();
+                                    switch (tipo) {
+                                        case "Soldado":
+                                            Soldado humano = new Soldado(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesEliminados.add(humano);
+                                            break;
+                                        case "Blindado":
+                                            Blindado blindado = new Blindado(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesEliminados.add(blindado);
+                                            break;
+                                        case "Especialista":
+                                            Especialista espec = new Especialista(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesEliminados.add(espec);
+                                            break;
+                                        case "Huidizo":
+                                            Huidizo huidizo = new Huidizo(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesEliminados.add(huidizo);
+                                            break;
+                                        case "Informatico":
+                                            Informatico infor = new Informatico(this.tablero.getCasilla(coordenadaH));
+                                            comestiblesEliminados.add(infor);
+                                            break;
+
+                                    }
+                                } else if (linea.startsWith("Conejo: ")) {
+                                    String nombreCon = "";
+                                    int identificador = 0;
+                                    Coordenada coordenadaC = null;
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Nombre: ")) {
+                                        nombreCon = linea.substring("Nombre: ".length());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Identificador: ")) {
+                                        identificador = Integer.parseInt(linea.split(":")[1].trim());
+                                    }
+                                    linea = br.readLine();
+                                    if (linea.startsWith("Casilla: ")) {
+                                        int inicioCoordenada = linea.indexOf("(") + 1;
+                                        int finCoordenada = linea.indexOf(")");
+                                        String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
+                                        String[] partesCoordenada = coordenadaStr.split(",");
+                                        int x = Integer.parseInt(partesCoordenada[0].trim());
+                                        int y = Integer.parseInt(partesCoordenada[1].trim());
+                                        coordenadaC = new Coordenada(x, y);
+
+                                    }
+                                    linea = br.readLine();
+                                    Conejo conejo = new Conejo(nombreCon, identificador, this.tablero.getCasilla(coordenadaC));
+                                    comestiblesEliminados.add(conejo);
+                                }
+                            }
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Número de Heridas: ")) {
+                            numHeridas = Integer.parseInt(linea.split(":")[1].trim());
+                            linea = br.readLine();//LEE Heridas Recibidas:
+                            for (int j = 0; j < numHeridas; j++) {
+                                linea = br.readLine();
+                                String tipo;
+                                tipo = linea.trim();
+                                heridasRecibidas.add(tipo);
+                            }
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Hambre: ")) {
+                            hambre = Integer.parseInt(linea.split(":")[1].trim());
+                        }
+                        linea = br.readLine();
+                        if (linea.startsWith("Ataque Especial: ")) {
+                            String nombreAtaque = "";
+                            int potencia = 0;
+                            int valorExito = 0;
+                            int alcance = 0;
+                            linea = br.readLine();
+                            if (linea.startsWith("Nombre: ")) {
+                                nombreAtaque = linea.substring("Nombre: ".length());
+                            }
+                            linea = br.readLine();
+                            if (linea.startsWith("Potencia: ")) {
+                                potencia = Integer.parseInt(linea.split(":")[1].trim());
+                            }
+                            linea = br.readLine();
+                            if (linea.startsWith("Valor de Éxito: ")) {
+                                valorExito = Integer.parseInt(linea.split(":")[1].trim());
+                            }
+                            linea = br.readLine();
+                            if (linea.startsWith("Alcance: ")) {
+                                alcance = Integer.parseInt(linea.split(":")[1].trim());
+                            }
+
+                        }
+                        linea = br.readLine();//LEE EL ESPACIO
+                        linea = br.readLine();
+                        if (linea.startsWith("Casilla:")) {
+                            int inicioCoordenada = linea.indexOf("(") + 1;
+                            int finCoordenada = linea.indexOf(")");
+                            String coordenadaStr = linea.substring(inicioCoordenada, finCoordenada);
+                            String[] partesCoordenada = coordenadaStr.split(",");
+                            int x = Integer.parseInt(partesCoordenada[0].trim());
+                            int y = Integer.parseInt(partesCoordenada[1].trim());
+                            coor = new Coordenada(x, y);
+                        }
+                        Casilla casillaZ= new Casilla(coor);
+                        //CREAMOS EL ZOMBIE
+                        Zombie zombie = new Zombie(nombre, estado, numHeridas, hambre,casillaZ);
+                        zombie.setNumAcciones(numAcciones);
+                        zombie.setComestiblesDevorados(comestiblesDevorados);
+                        zombie.setComestiblesEliminados(comestiblesEliminados);
+                        zombie.setHeridasRecibidas(heridasRecibidas);
+                        zombie.setAtaqueEspecial(ataqueEspecial);
+                        this.listaJugadores.add(zombie);
+                        tablero.getCasilla(coor).getNumZombie().add(zombie);
+                        tablero.getCasilla(coor).setNumZombie(tablero.getCasilla(coor).getNumZombie());
+                        
+                    }
                 }
             }
 
         } catch (IOException e) {
             //ERROR AL LEER ARCHIVO
         }
+    }
+
+    public void iniciarJuegoCargado() {
+        new Thread(() -> {
+            Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
+            Casilla objetivo = tablero.getCasilla(nueva);
+
+            pantallaJuego = new PantallaJuego(numJug);
+            SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
+            pantallaJuego.agregarEvento("JUEGO INICIADO CON " + numJug + " JUGADORES.");
+            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados()) {
+                for (int i = 0; i < this.getNumJug(); i++) {
+                    //COMPRUEBA SI ESTA VIVO O NO 
+                    if ("ACTIVO".equals(this.getListaJugadores().get(i).getEstado())) {
+                        listaJugadores.get(i).activarse(this.tablero, this);
+                    }
+                }
+                pantallaJuego.setPanelControles(new PanelControlPredeterminado());
+                ArrayList<Humano> copiaListaHumanos = new ArrayList(this.getListaHumanos());
+                pantallaJuego.agregarEvento("********** TURNO HUMANOS **********");
+                for (Humano humano : copiaListaHumanos) {
+                    if (!listaJugadores.isEmpty()) {
+                        humano.activarse(this.tablero, this);
+                    }
+                }
+                for (int i = 0; i < this.getNumJug(); i++) {
+                    Random random = new Random();
+                    int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
+                    int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
+                    Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
+                    Casilla posicion = tablero.getCasilla(coor);
+                    Humano humano = Humano.aparicion(posicion);
+                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
+                    this.listaHumanos.add(humano);
+                    tablero.getCasilla(coor).getNumHumano().add(humano);
+                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                }
+                SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
+                try {
+                    Thread.sleep(500); // Pausa de medio segundo, ajusta según sea necesario
+                } catch (InterruptedException e) {
+                }
+            }
+            pantallaJuego.setPanelControles(new PanelPartidaTerminada());
+            pantallaJuego.anadirFinalPartida();
+        }).start();
     }
 
 }
