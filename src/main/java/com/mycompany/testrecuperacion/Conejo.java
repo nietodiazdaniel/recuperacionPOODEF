@@ -14,7 +14,7 @@ public class Conejo implements Comestible {
     private String nombre;
     private int identificador;
     private Casilla casilla;
-
+    private static int contadorId=0;
     
     private static final String[] NOMBRES_CONEJOS = {
         "Conejo Saltarín",
@@ -26,9 +26,9 @@ public class Conejo implements Comestible {
     };
      
      
-    public Conejo(int identificador,Casilla casilla) {
+    public Conejo(Casilla casilla) {
         this.nombre = NOMBRES_CONEJOS[new Random().nextInt(NOMBRES_CONEJOS.length)];
-        this.identificador = identificador;
+        this.identificador = ++contadorId;
         this.casilla=casilla;
     }
     public Conejo(String nombre,int identificador,Casilla casilla) {

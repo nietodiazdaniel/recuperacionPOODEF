@@ -496,7 +496,7 @@ public class Juego {
                     numeroJugadores = Integer.parseInt(linea.split(":")[1].trim());
                     this.tablero = new Tablero(numeroJugadores);
                     this.numJug = numeroJugadores;
-                    linea=br.readLine();//LEE Lista de Zombies:
+                    linea = br.readLine();//LEE Lista de Zombies:
                     for (int i = 0; i < numeroJugadores; i++) {
                         String nombre = "";
                         String estado = "";
@@ -861,11 +861,31 @@ public class Juego {
             pantallaJuego = new PantallaJuego(numJug);
             SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
             pantallaJuego.agregarEvento("JUEGO INICIADO CON " + numJug + " JUGADORES.");
+
+            boolean igualarTurnos = false;
+            boolean turnoDesigual = false;
             while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados()) {
-                for (int i = 0; i < this.getNumJug(); i++) {
-                    //COMPRUEBA SI ESTA VIVO O NO 
-                    if ("ACTIVO".equals(this.getListaJugadores().get(i).getEstado())) {
-                        listaJugadores.get(i).activarse(this.tablero, this);
+                if (!igualarTurnos) {
+                    for (Zombie zombie : listaJugadores) {
+                        if (zombie.getNumAcciones() > 0 && zombie.getNumAcciones() < 3) {
+                            turnoDesigual = true;
+                        }
+                        if (turnoDesigual) {
+                            if (zombie.getEstado().equals("ACTIVO")) {
+                                zombie.activarse(tablero, this);
+
+                            }
+                        }
+                    }
+                    igualarTurnos = true;
+                    //PRUEBA PARA IGUALAR TURNOS
+
+                } else {
+                    for (int i = 0; i < this.getNumJug(); i++) {
+                        //COMPRUEBA SI ESTA VIVO O NO 
+                        if ("ACTIVO".equals(this.getListaJugadores().get(i).getEstado())) {
+                            listaJugadores.get(i).activarse(this.tablero, this);
+                        }
                     }
                 }
                 pantallaJuego.setPanelControles(new PanelControlPredeterminado());
