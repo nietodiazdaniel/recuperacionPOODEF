@@ -177,7 +177,7 @@ public class PantallaJuego extends JFrame {
         itemCrearAtaque.setPreferredSize(new java.awt.Dimension(170, 32));
         itemCrearAtaque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //itemCrearAtaqueActionPerformed(evt);
+                itemCrearAtaqueActionPerformed(evt);
             }
         });
         menuDepurador.add(itemCrearAtaque);
@@ -378,6 +378,9 @@ public class PantallaJuego extends JFrame {
     }
     private void itemCrearZombiActionPerformed(java.awt.event.ActionEvent evt) {
         DialogCrearZombi dialogZ= new DialogCrearZombi(null,this.juego);
+    }
+    private void itemCrearAtaqueActionPerformed(java.awt.event.ActionEvent evt) {
+        DialogCrearAtaque dialogA= new DialogCrearAtaque(null,this.juego);
     }
 
 
