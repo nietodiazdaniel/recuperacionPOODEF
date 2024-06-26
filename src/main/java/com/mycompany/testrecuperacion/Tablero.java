@@ -15,7 +15,6 @@ public class Tablero {
     private Casilla[][] casillas;
     private int filas;
     private int columnas;
-    private TableroGrafico tableroGrafico;
 
     public Tablero(Integer numJug) {
         switch (numJug) {
@@ -35,8 +34,7 @@ public class Tablero {
                 throw new IllegalArgumentException("Número no válido. Introduce un número del 1 al 4.");
         }
 
-       // tableroGrafico = new TableroGrafico(this, filas, columnas);
-        //actualizarTableroGrafico();
+       
     }
 
     private void inicializarTablero(int filas, int columnas) {
@@ -122,11 +120,7 @@ public class Tablero {
         return disttotal; 
     }
 
-    public void actualizarTableroGrafico() {
-        if (tableroGrafico != null) {
-            tableroGrafico.actualizarTablero();
-        }
-    }
+    
     public String toText(){
         StringBuilder sb = new StringBuilder();
         sb.append("Filas: ").append(filas).append("\n");

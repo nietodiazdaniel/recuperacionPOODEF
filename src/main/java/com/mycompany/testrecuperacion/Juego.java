@@ -109,65 +109,7 @@ public class Juego {
         return true;
     }
 
-    public void iniciarJuego() {
-
-        Coordenada inicio = new Coordenada(0, 0);
-        Casilla comienzo = new Casilla(inicio);
-        for (int i = 1; i <= this.numJug; i++) {
-            Scanner ent = new Scanner(System.in);
-            System.out.println("Nombre " + i);
-            String nombre = ent.nextLine();
-            Zombie zom = new Zombie(nombre, "ACTIVO", 0, 0, comienzo);
-            tablero.getCasilla(inicio).getNumZombie().add(zom);
-            tablero.getCasilla(inicio).setNumZombie(tablero.getCasilla(inicio).getNumZombie());
-            this.listaJugadores.add(zom);
-        }
-        for (int i = 0; i < numJug; i++) {
-            for (int j = 0; j < 3; j++) {
-                Random random = new Random();
-                int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
-                int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
-                Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
-                Casilla posicion = tablero.getCasilla(coor);
-                Humano humano = Humano.aparicion(posicion);
-                this.listaHumanos.add(humano);
-                tablero.getCasilla(coor).getNumHumano().add(humano);
-                //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
-            }
-        }
-
-        Coordenada nueva = new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1);
-        Casilla objetivo = tablero.getCasilla(nueva);
-
-        tablero.imprimirTablero();
-
-        while (0 == 0) {
-            for (int i = 0; i < this.getNumJug(); i++) {
-                //COMPRUEBA SI ESTA VIVO O NO 
-                if ("ACTIVO".equals(this.getListaJugadores().get(i).getEstado())) {
-                    listaJugadores.get(i).activarse(this.tablero, this);
-                }
-            }
-            for (Humano humano : this.getListaHumanos()) {
-                if (!listaJugadores.isEmpty()) {
-                    humano.activarse(this.tablero, this);
-                }
-            }
-            for (int i = 0; i < this.getNumJug(); i++) {
-                Random random = new Random();
-                int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
-                int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
-                Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
-                Casilla posicion = tablero.getCasilla(coor);
-                Humano humano = Humano.aparicion(posicion);
-                this.listaHumanos.add(humano);
-                tablero.getCasilla(coor).getNumHumano().add(humano);
-                //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
-            }
-            tablero.imprimirTablero();
-        }
-
-    }
+    
 
     public void iniciarJuegoGUI(String nom1) {
         new Thread(() -> {
