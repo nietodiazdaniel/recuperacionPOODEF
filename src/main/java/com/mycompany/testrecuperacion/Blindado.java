@@ -51,7 +51,6 @@ public class Blindado extends HumanoCombatiente {
             casillaObjetivo.setNumHumano(humanosCasillaObjetivo);
 
             this.setCasilla(casillaObjetivo);
-            //System.out.println("El blindado se ha movido a la posicion "  + nueva.getCoordenada().getX()+" "+nueva.getCoordenada().getY());
             juego.getPantallaJuego().agregarEvento("El humano blindado se ha movido a la posicion "  + nueva.getCoordenada().toString());
         }
         else {

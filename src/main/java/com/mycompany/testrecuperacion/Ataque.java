@@ -42,7 +42,7 @@ public abstract class Ataque {
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre: ").append(nombre).append("\n");
         sb.append("Potencia: ").append(potencia).append("\n");
-        sb.append("Valor de Éxito: ").append(valorExito).append("\n");
+        sb.append("Valor de Exito: ").append(valorExito).append("\n");
         sb.append("Alcance: ").append(alcance).append("\n");
         return sb.toString();
     }

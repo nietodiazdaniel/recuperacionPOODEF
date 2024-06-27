@@ -383,34 +383,10 @@ public class Zombie implements Activable {
         }
         numAcciones++;
 
-        //BUSCAMOS ESA CASILLA EN EL TABLERO
-        /*Casilla casillaTablero = tablero.getCasilla(posicion.getCoordenada());
-        Scanner ent = new Scanner(System.in);
-        System.out.println("Alcance de ataqueespecial: " + this.ataqueEspecial.getAlcance());
-        System.out.println("Que ataque desea ejercer (Devorar(1)/AtaqueEspecial(2)): ");
-        int opcion = ent.nextInt();
-        if (opcion == 1) {
-            devorar.realizarAtaque(this, casillaTablero);
-        } else if (opcion == 2) {
-            int dx = Math.abs(this.getCasilla().getCoordenada().getX() - posicion.getCoordenada().getX());
-            int dy = Math.abs(this.getCasilla().getCoordenada().getY() - posicion.getCoordenada().getY());
-
-            if ((dx + dy) <= ataqueEspecial.getAlcance()) {
-                ataqueEspecial.realizarAtaque(this, casillaTablero);
-            } else {
-                System.out.println("El zombie " + this.getNombre() + " ha malgastado una accion ya que no se puede alcanzar con el ataque esta posicion " + this.getCasilla().getCoordenada().toString());
-            }
-        }
-        numAcciones++;
-         */
+        
     }
 
-    /*
-    @Override
-    public Coordenada getCoordenada() {
-        return casilla.getCoordenada();
-    }
-     */
+   
     public void buscarComida(Tablero tablero, Juego jue) {
         Random random = new Random();
         int resultado = random.nextInt(100); // Genera un número entre 0 y 99
@@ -466,7 +442,7 @@ public class Zombie implements Activable {
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre: ").append(nombre).append("\n");
         sb.append("Estado: ").append(estado).append("\n");
-        sb.append("Número de Acciones: ").append(numAcciones).append("\n");
+        sb.append("Numero de Acciones: ").append(numAcciones).append("\n");
         sb.append("Numero de Comestibles Devorados: ").append(comestiblesDevorados.size()).append("\n");
         sb.append("Comestibles Devorados:\n");
         for (Comestible comestible : comestiblesDevorados) {
@@ -489,7 +465,7 @@ public class Zombie implements Activable {
                 sb.append(conejo.toText()).append("\n");
             }
         }
-        sb.append("Número de Heridas: ").append(numHeridas).append("\n");
+        sb.append("Numero de Heridas: ").append(numHeridas).append("\n");
         sb.append("Heridas Recibidas:\n");
         for (String herida : heridasRecibidas) {
             sb.append(herida).append("\n");
@@ -500,4 +476,3 @@ public class Zombie implements Activable {
         return sb.toString();
     }
 }
-//PARA EL ATAQUE HACER EQUIPO=ATAQUE, VIVERES=ATAQUE ESPECIAL Y DEVORAR ES LO MISMO QUE UN ATAQUE ESPECIAL EN CONCRETO.

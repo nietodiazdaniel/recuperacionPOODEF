@@ -265,14 +265,14 @@ public class PantallaJuego extends JFrame {
                 if (!casilla.getNumZombie().isEmpty()) {
                     for (Zombie zombie : casilla.getNumZombie()) {
                         //texto += "Z:" + zombie.getNombre() + " ";
-                        texto.append("Z:").append(zombie.getNombre()).append("<br>");
+                        texto.append("<span style='color:green;'>Z:").append(zombie.getNombre()).append("</span><br>");
                     }
                 }
                 // Añadir información sobre humanos
                 if (!casilla.getNumHumano().isEmpty()) {
                     for (Humano humano : casilla.getNumHumano()) {
                         //texto += "H:" + humano.getClass().getSimpleName() + " ";
-                        texto.append("H:").append(humano.getClass().getSimpleName()).append("<br>");
+                        texto.append("<span style='color:red;'>H:").append(humano.getClass().getSimpleName()).append("</span><br>");
                     }
                 }
                 // Añadir información sobre conejos
@@ -289,7 +289,7 @@ public class PantallaJuego extends JFrame {
 
             }
         }
-        botones[tablero.getFilas() - 1][tablero.getColumnas() - 1].setText("<html>OBJETIVO</html>");
+        botones[tablero.getFilas() - 1][tablero.getColumnas() - 1].setText("<html><span style='color:blue; font-weight:bold;'>OBJETIVO</span></html>");
     }
 
     private void itemSalirActionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,15 +402,12 @@ public class PantallaJuego extends JFrame {
 
     private void itemCrearAtaqueActionPerformed(java.awt.event.ActionEvent evt) {
         DialogCrearAtaque dialogA = new DialogCrearAtaque(null, this.juego);
-        
+
     }
 
     private void itemFinalizarActionPerformed(java.awt.event.ActionEvent evt) {
         this.juego.finalizarVoluntad();
     }
 
-    public static void main(String[] args) {
-        // TODO code application logic here
-        PantallaJuego pantalla = new PantallaJuego(2);
-    }
+    
 }

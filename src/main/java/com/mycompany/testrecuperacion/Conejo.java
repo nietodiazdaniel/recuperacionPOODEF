@@ -17,7 +17,7 @@ public class Conejo implements Comestible {
     private static int contadorId=0;
     
     private static final String[] NOMBRES_CONEJOS = {
-        "Conejo Saltarín",
+        "Conejo Saltarin",
         "Brincos",
         "Orejas Largas",
         "Pelusa",

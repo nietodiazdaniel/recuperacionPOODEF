@@ -43,7 +43,6 @@ public class Coordenada {
     }
     
     
-    //FALTARIA AÑADIR SI ESO SETYGET DE ZOMBIES Y SUPERVIVIENTES CND LOS TENGAMOS HECHOS
 
     @Override
     public String toString() {

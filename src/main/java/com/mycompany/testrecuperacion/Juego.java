@@ -137,7 +137,6 @@ public class Juego {
                     Humano humano = Humano.aparicion(posicion);
                     this.listaHumanos.add(humano);
                     tablero.getCasilla(coor).getNumHumano().add(humano);
-                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
 
@@ -173,12 +172,11 @@ public class Juego {
                         pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
                         this.listaHumanos.add(humano);
                         tablero.getCasilla(coor).getNumHumano().add(humano);
-                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                     }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {
-                    Thread.sleep(500); // Pausa de medio segundo, ajusta según sea necesario
+                    Thread.sleep(500); // Pausa de medio segundo
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -212,7 +210,6 @@ public class Juego {
                     Humano humano = Humano.aparicion(posicion);
                     this.listaHumanos.add(humano);
                     tablero.getCasilla(coor).getNumHumano().add(humano);
-                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
 
@@ -248,12 +245,11 @@ public class Juego {
                         pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
                         this.listaHumanos.add(humano);
                         tablero.getCasilla(coor).getNumHumano().add(humano);
-                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                     }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {
-                    Thread.sleep(500); // Pausa de medio segundo, ajusta según sea necesario
+                    Thread.sleep(500); // Pausa de medio segundo
                 } catch (InterruptedException e) {
                 }
             }
@@ -290,7 +286,6 @@ public class Juego {
                     Humano humano = Humano.aparicion(posicion);
                     this.listaHumanos.add(humano);
                     tablero.getCasilla(coor).getNumHumano().add(humano);
-                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
 
@@ -326,12 +321,11 @@ public class Juego {
                         pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
                         this.listaHumanos.add(humano);
                         tablero.getCasilla(coor).getNumHumano().add(humano);
-                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                     }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {
-                    Thread.sleep(500); // Pausa de medio segundo, ajusta según sea necesario
+                    Thread.sleep(500); // Pausa de medio segundo
                 } catch (InterruptedException e) {
                 }
             }
@@ -372,7 +366,6 @@ public class Juego {
                     Humano humano = Humano.aparicion(posicion);
                     this.listaHumanos.add(humano);
                     tablero.getCasilla(coor).getNumHumano().add(humano);
-                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                 }
             }
 
@@ -408,12 +401,11 @@ public class Juego {
                         pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
                         this.listaHumanos.add(humano);
                         tablero.getCasilla(coor).getNumHumano().add(humano);
-                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                     }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {
-                    Thread.sleep(500); // Pausa de medio segundo, ajusta según sea necesario
+                    Thread.sleep(500); // Pausa de medio segundo
                 } catch (InterruptedException e) {
                 }
             }
@@ -475,7 +467,7 @@ public class Juego {
                             estado = linea.substring("Estado: ".length());
                         }
                         linea = br.readLine();
-                        if (linea.startsWith("Número de Acciones: ")) {
+                        if (linea.startsWith("Numero de Acciones: ")) {
                             numAcciones = Integer.parseInt(linea.split(":")[1].trim());
                         }
                         linea = br.readLine();
@@ -484,7 +476,7 @@ public class Juego {
                             linea = br.readLine();//LEE Comestibles Devorados:
                             for (int j = 0; j < numDevorados; j++) {
                                 linea = br.readLine();
-                                if (linea.startsWith("Humano: ")) {
+                                if (linea.startsWith("Humano:")) {
                                     int numeroActivaciones = 0;
                                     int aguante = 0;
                                     Coordenada coordenadaH = null;
@@ -647,7 +639,7 @@ public class Juego {
                             }
                         }
                         linea = br.readLine();
-                        if (linea.startsWith("Número de Heridas: ")) {
+                        if (linea.startsWith("Numero de Heridas: ")) {
                             numHeridas = Integer.parseInt(linea.split(":")[1].trim());
                             linea = br.readLine();//LEE Heridas Recibidas:
                             for (int j = 0; j < numHeridas; j++) {
@@ -676,7 +668,7 @@ public class Juego {
                                 potencia = Integer.parseInt(linea.split(":")[1].trim());
                             }
                             linea = br.readLine();
-                            if (linea.startsWith("Valor de Éxito: ")) {
+                            if (linea.startsWith("Valor de Exito: ")) {
                                 valorExito = Integer.parseInt(linea.split(":")[1].trim());
                             }
                             linea = br.readLine();
@@ -800,9 +792,7 @@ public class Juego {
 
                         }
                     }
-                } else if (linea.startsWith("Lista de Zombies: ")) {
-
-                }
+                } 
             }
 
         } catch (IOException e) {
@@ -835,7 +825,6 @@ public class Juego {
                         }
                     }
                     igualarTurnos = true;
-                    //PRUEBA PARA IGUALAR TURNOS
 
                 } else {
                     for (int i = 0; i < this.getNumJug(); i++) {
@@ -864,12 +853,11 @@ public class Juego {
                         pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
                         this.listaHumanos.add(humano);
                         tablero.getCasilla(coor).getNumHumano().add(humano);
-                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
                     }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {
-                    Thread.sleep(500); // Pausa de medio segundo, ajusta según sea necesario
+                    Thread.sleep(500); // Pausa de medio segundo
                 } catch (InterruptedException e) {
                 }
             }

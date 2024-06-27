@@ -22,7 +22,6 @@ public class Informatico extends HumanoCombatiente {
         if (zombie.getHambre() >= 4) {
             zombie.setHambre(zombie.getHambre() - 2);
 
-            //el informatico podia dañar si se lo comen
             if (((Math.random() * 2) + 1) == 1) {
                 zombie.setNumHeridas(zombie.getNumHeridas() + 1);
             }
@@ -96,7 +95,7 @@ public class Informatico extends HumanoCombatiente {
         }
     }
 
-    public void atacarADistancia(Tablero tablero, Juego juego, Casilla objetivo) {//MODIFICAR PARA ATCAR A DISTANCIA
+    public void atacarADistancia(Tablero tablero, Juego juego, Casilla objetivo) {
         Casilla casillaTablero = tablero.getCasilla(objetivo.getCoordenada());
         if (casillaTablero.getNumZombie().get(0).getNumHeridas() < 5) {
             casillaTablero.getNumZombie().get(0).setNumHeridas(casillaTablero.getNumZombie().get(0).getNumHeridas() + 1);
@@ -145,12 +144,16 @@ public class Informatico extends HumanoCombatiente {
             this.atacar(tablero, juego);
             SwingUtilities.invokeLater(() -> juego.getPantallaJuego().actualizarTablero(juego));
         } else if ((opcion1 == null || opcion1.getNumZombie().isEmpty()) && (opcion2 == null || opcion2.getNumZombie().isEmpty()) && (opcion3 == null || opcion3.getNumZombie().isEmpty()) && (opcion4 == null || opcion4.getNumZombie().isEmpty())) {//ESTO FUNCIONA BIEN
-            Coordenada objetivo = this.zombieMasCercano(tablero, juego);
-            Casilla nueva = tablero.getCasilla(objetivo);
-            this.moverse(tablero, nueva, juego);
-            Coordenada objetivo1 = this.zombieMasCercano(tablero, juego);
-            Casilla nueva1 = tablero.getCasilla(objetivo1);
-            this.moverse(tablero, nueva1, juego);
+            if (this.zombieMasCercano(tablero, juego) != null) {
+                Coordenada objetivo = this.zombieMasCercano(tablero, juego);
+                Casilla nueva = tablero.getCasilla(objetivo);
+                this.moverse(tablero, nueva, juego);
+            }
+            if (this.zombieMasCercano(tablero, juego) != null) {
+                Coordenada objetivo1 = this.zombieMasCercano(tablero, juego);
+                Casilla nueva1 = tablero.getCasilla(objetivo1);
+                this.moverse(tablero, nueva1, juego);
+            }
             SwingUtilities.invokeLater(() -> juego.getPantallaJuego().actualizarTablero(juego));
         } else {
             if (opcion1 != null && !opcion1.getNumZombie().isEmpty()) {

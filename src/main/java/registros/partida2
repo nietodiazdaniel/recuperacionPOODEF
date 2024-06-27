@@ -1,0 +1,95 @@
+Numero de Jugadores: 2
+Lista de Zombies:
+Nombre: dani
+Estado: ACTIVO
+Numero de Acciones: 0
+Numero de Comestibles Devorados: 1
+Comestibles Devorados:
+Humano:
+Tipo: Blindado
+Numero de Activaciones: 1
+Aguante: 2
+Casilla: (2, 1)
+Numero de Comestibles Eliminados: 5
+Comestibles Eliminados:
+Humano:
+Tipo: Informatico
+Numero de Activaciones: 1
+Aguante: 3
+Casilla: (2, 1)
+Humano:
+Tipo: Soldado
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (1, 1)
+Humano:
+Tipo: Blindado
+Numero de Activaciones: 1
+Aguante: 2
+Casilla: (1, 1)
+Humano:
+Tipo: Blindado
+Numero de Activaciones: 1
+Aguante: 2
+Casilla: (1, 1)
+Humano:
+Tipo: Huidizo
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (1, 1)
+Numero de Heridas: 0
+Heridas Recibidas:
+Hambre: 2
+Ataque Especial:
+Nombre: Vendaval de Garras
+Potencia: 2
+Valor de Exito: 2
+Alcance: 4
+Casilla: (2, 0)
+Nombre: javi
+Estado: ACTIVO
+Numero de Acciones: 2
+Numero de Comestibles Devorados: 1
+Comestibles Devorados:
+Humano:
+Tipo: Huidizo
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (4, 2)
+Numero de Comestibles Eliminados: 2
+Comestibles Eliminados:
+Humano:
+Tipo: Blindado
+Numero de Activaciones: 1
+Aguante: 2
+Casilla: (3, 1)
+Humano:
+Tipo: Informatico
+Numero de Activaciones: 1
+Aguante: 3
+Casilla: (5, 2)
+Numero de Heridas: 0
+Heridas Recibidas:
+Hambre: 1
+Ataque Especial:
+Nombre: Explosion de Putrefaccion
+Potencia: 4
+Valor de Exito: 3
+Alcance: 2
+Casilla: (5, 2)
+Numero de Conejos: 0
+Lista de Conejos:
+Numero de Humanos: 3
+Lista de Humanos:
+Tipo: Huidizo
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (5, 5)
+Tipo: Huidizo
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (5, 4)
+Tipo: Informatico
+Numero de Activaciones: 1
+Aguante: 3
+Casilla: (6, 3)

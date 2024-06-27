@@ -18,7 +18,7 @@ public class AtaqueEspecial extends Ataque {
         "Lluvia de Huesos",
         "Golpe de Terror",
         "Vendaval de Garras",
-        "Explosión de Putrefacción",
+        "Explosion de Putrefaccion",
         "Grito Mortal",
         "Sombra de la Muerte"
     };
@@ -46,7 +46,7 @@ public class AtaqueEspecial extends Ataque {
                 return 5;
             case "Vendaval de Garras":
                 return 2;
-            case "Explosión de Putrefacción":
+            case "Explosion de Putrefaccion":
                 return 4;
             case "Grito Mortal":
                 return 3;
@@ -67,7 +67,7 @@ public class AtaqueEspecial extends Ataque {
                 return 3;
             case "Vendaval de Garras":
                 return 2;
-            case "Explosión de Putrefacción":
+            case "Explosion de Putrefaccion":
                 return 3;
             case "Grito Mortal":
                 return 5;
@@ -88,7 +88,7 @@ public class AtaqueEspecial extends Ataque {
                 return 1;
             case "Vendaval de Garras":
                 return 4;
-            case "Explosión de Putrefacción":
+            case "Explosion de Putrefaccion":
                 return 2;
             case "Grito Mortal":
                 return 3;
@@ -136,7 +136,6 @@ public class AtaqueEspecial extends Ataque {
         if (!comestiblesEnCasilla.isEmpty()) {
             int dados = this.getPotencia() + zombie.getHambre(); //SI EN LA CASILLA HAY COMESTIBLES ENTONCES EMPEZAMOS
             int impactos = 0;
-            //System.out.print("Valor Exito: " + this.getValorExito() + ". Has obtenido los siguentes numeros en el dado: ");
             juego.getPantallaJuego().agregarEvento("Valor Exito: " + this.getValorExito() + ". Has obtenido los siguentes numeros en el dado: ");
             for (int i = 0; i < dados; i++) {
                 int resultado = Dado.tirarDado();
@@ -170,7 +169,6 @@ public class AtaqueEspecial extends Ataque {
                 } else if (comestible instanceof Conejo conejo) {
                     if (impactos > 0) {
 
-                        //AQUI DEBERIAMOS METER EL SYSTEM.OUT.PRINTLN("TAL HUMANO HA MUERTO O HA SIDO DEVORADO POR TAL ZOMBIE")
                         conejosEnCasilla.remove(conejo);
                         objetivo.setNumConejos(conejosEnCasilla); // Eliminar el conejo de la casilla
                         ArrayList<Comestible> elementosEliminados = zombie.getComestiblesEliminados();

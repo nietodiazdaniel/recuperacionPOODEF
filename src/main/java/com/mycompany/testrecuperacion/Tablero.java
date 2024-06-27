@@ -31,7 +31,7 @@ public class Tablero {
                 inicializarTablero(10, 10);
                 break;
             default:
-                throw new IllegalArgumentException("Número no válido. Introduce un número del 1 al 4.");
+                throw new IllegalArgumentException("Numero no válido. Introduce un número del 1 al 4.");
         }
 
        
