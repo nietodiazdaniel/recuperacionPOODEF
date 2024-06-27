@@ -29,6 +29,7 @@ public class Juego {
     private ArrayList<Humano> listaHumanos = new ArrayList<>();
     private ArrayList<Conejo> listaConejos = new ArrayList<>();
     private PantallaJuego pantallaJuego;
+    private boolean finalizarAVoluntad = false;
 
     public Juego(File selectedFile) {
         this.cargarJuego(selectedFile);
@@ -109,7 +110,13 @@ public class Juego {
         return true;
     }
 
-    
+    public void finalizarVoluntad() {
+        this.finalizarAVoluntad = true;
+    }
+
+    public boolean isFinalizarAVoluntad() {
+        return finalizarAVoluntad;
+    }
 
     public void iniciarJuegoGUI(String nom1) {
         new Thread(() -> {
@@ -140,7 +147,7 @@ public class Juego {
             pantallaJuego = new PantallaJuego(numJug);
             SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
             pantallaJuego.agregarEvento("JUEGO INICIADO CON " + numJug + " JUGADORES.");
-            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados()) {
+            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !finalizarAVoluntad) {
                 for (int i = 0; i < this.getNumJug(); i++) {
                     //COMPRUEBA SI ESTA VIVO O NO 
                     if ("ACTIVO".equals(this.getListaJugadores().get(i).getEstado())) {
@@ -150,22 +157,24 @@ public class Juego {
                 pantallaJuego.setPanelControles(new PanelControlPredeterminado());
                 ArrayList<Humano> copiaListaHumanos = new ArrayList(this.getListaHumanos());
                 pantallaJuego.agregarEvento("********** TURNO HUMANOS **********");
-                for (Humano humano : copiaListaHumanos) {
-                    if (!listaJugadores.isEmpty()) {
-                        humano.activarse(this.tablero, this);
+                if (!finalizarAVoluntad) {
+                    for (Humano humano : copiaListaHumanos) {
+                        if (!listaJugadores.isEmpty()) {
+                            humano.activarse(this.tablero, this);
+                        }
                     }
-                }
-                for (int i = 0; i < this.getNumJug(); i++) {
-                    Random random = new Random();
-                    int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
-                    int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
-                    Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
-                    Casilla posicion = tablero.getCasilla(coor);
-                    Humano humano = Humano.aparicion(posicion);
-                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
-                    this.listaHumanos.add(humano);
-                    tablero.getCasilla(coor).getNumHumano().add(humano);
-                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    for (int i = 0; i < this.getNumJug(); i++) {
+                        Random random = new Random();
+                        int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
+                        int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
+                        Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
+                        Casilla posicion = tablero.getCasilla(coor);
+                        Humano humano = Humano.aparicion(posicion);
+                        pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
+                        this.listaHumanos.add(humano);
+                        tablero.getCasilla(coor).getNumHumano().add(humano);
+                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {
@@ -213,7 +222,7 @@ public class Juego {
             pantallaJuego = new PantallaJuego(numJug);
             SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
             pantallaJuego.agregarEvento("JUEGO INICIADO CON " + numJug + " JUGADORES.");
-            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados()) {
+            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados() && !finalizarAVoluntad) {
                 for (int i = 0; i < this.getNumJug(); i++) {
                     //COMPRUEBA SI ESTA VIVO O NO 
                     if ("ACTIVO".equals(this.getListaJugadores().get(i).getEstado())) {
@@ -223,22 +232,24 @@ public class Juego {
                 pantallaJuego.setPanelControles(new PanelControlPredeterminado());
                 ArrayList<Humano> copiaListaHumanos = new ArrayList(this.getListaHumanos());
                 pantallaJuego.agregarEvento("********** TURNO HUMANOS **********");
-                for (Humano humano : copiaListaHumanos) {
-                    if (!todosJugadoresEliminados()) {
-                        humano.activarse(this.tablero, this);
+                if (!finalizarAVoluntad) {
+                    for (Humano humano : copiaListaHumanos) {
+                        if (!todosJugadoresEliminados()) {
+                            humano.activarse(this.tablero, this);
+                        }
                     }
-                }
-                for (int i = 0; i < this.getNumJug(); i++) {
-                    Random random = new Random();
-                    int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
-                    int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
-                    Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
-                    Casilla posicion = tablero.getCasilla(coor);
-                    Humano humano = Humano.aparicion(posicion);
-                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
-                    this.listaHumanos.add(humano);
-                    tablero.getCasilla(coor).getNumHumano().add(humano);
-                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    for (int i = 0; i < this.getNumJug(); i++) {
+                        Random random = new Random();
+                        int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
+                        int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
+                        Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
+                        Casilla posicion = tablero.getCasilla(coor);
+                        Humano humano = Humano.aparicion(posicion);
+                        pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
+                        this.listaHumanos.add(humano);
+                        tablero.getCasilla(coor).getNumHumano().add(humano);
+                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {
@@ -289,7 +300,7 @@ public class Juego {
             pantallaJuego = new PantallaJuego(numJug);
             SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
             pantallaJuego.agregarEvento("JUEGO INICIADO CON " + numJug + " JUGADORES.");
-            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados()) {
+            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados() && !finalizarAVoluntad) {
                 for (int i = 0; i < this.getNumJug(); i++) {
                     //COMPRUEBA SI ESTA VIVO O NO 
                     if ("ACTIVO".equals(this.getListaJugadores().get(i).getEstado())) {
@@ -299,22 +310,24 @@ public class Juego {
                 pantallaJuego.setPanelControles(new PanelControlPredeterminado());
                 ArrayList<Humano> copiaListaHumanos = new ArrayList(this.getListaHumanos());
                 pantallaJuego.agregarEvento("********** TURNO HUMANOS **********");
-                for (Humano humano : copiaListaHumanos) {
-                    if (!listaJugadores.isEmpty()) {
-                        humano.activarse(this.tablero, this);
+                if (!finalizarAVoluntad) {
+                    for (Humano humano : copiaListaHumanos) {
+                        if (!listaJugadores.isEmpty()) {
+                            humano.activarse(this.tablero, this);
+                        }
                     }
-                }
-                for (int i = 0; i < this.getNumJug(); i++) {
-                    Random random = new Random();
-                    int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
-                    int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
-                    Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
-                    Casilla posicion = tablero.getCasilla(coor);
-                    Humano humano = Humano.aparicion(posicion);
-                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
-                    this.listaHumanos.add(humano);
-                    tablero.getCasilla(coor).getNumHumano().add(humano);
-                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    for (int i = 0; i < this.getNumJug(); i++) {
+                        Random random = new Random();
+                        int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
+                        int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
+                        Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
+                        Casilla posicion = tablero.getCasilla(coor);
+                        Humano humano = Humano.aparicion(posicion);
+                        pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
+                        this.listaHumanos.add(humano);
+                        tablero.getCasilla(coor).getNumHumano().add(humano);
+                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {
@@ -369,7 +382,7 @@ public class Juego {
             pantallaJuego = new PantallaJuego(numJug);
             SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
             pantallaJuego.agregarEvento("JUEGO INICIADO CON " + numJug + " JUGADORES.");
-            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados()) {
+            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados() && !finalizarAVoluntad) {
                 for (int i = 0; i < this.getNumJug(); i++) {
                     //COMPRUEBA SI ESTA VIVO O NO 
                     if ("ACTIVO".equals(this.getListaJugadores().get(i).getEstado())) {
@@ -379,22 +392,24 @@ public class Juego {
                 pantallaJuego.setPanelControles(new PanelControlPredeterminado());
                 ArrayList<Humano> copiaListaHumanos = new ArrayList(this.getListaHumanos());
                 pantallaJuego.agregarEvento("********** TURNO HUMANOS **********");
-                for (Humano humano : copiaListaHumanos) {
-                    if (!listaJugadores.isEmpty()) {
-                        humano.activarse(this.tablero, this);
+                if (!finalizarAVoluntad) {
+                    for (Humano humano : copiaListaHumanos) {
+                        if (!listaJugadores.isEmpty()) {
+                            humano.activarse(this.tablero, this);
+                        }
                     }
-                }
-                for (int i = 0; i < this.getNumJug(); i++) {
-                    Random random = new Random();
-                    int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
-                    int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
-                    Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
-                    Casilla posicion = tablero.getCasilla(coor);
-                    Humano humano = Humano.aparicion(posicion);
-                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
-                    this.listaHumanos.add(humano);
-                    tablero.getCasilla(coor).getNumHumano().add(humano);
-                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    for (int i = 0; i < this.getNumJug(); i++) {
+                        Random random = new Random();
+                        int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
+                        int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
+                        Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
+                        Casilla posicion = tablero.getCasilla(coor);
+                        Humano humano = Humano.aparicion(posicion);
+                        pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
+                        this.listaHumanos.add(humano);
+                        tablero.getCasilla(coor).getNumHumano().add(humano);
+                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {
@@ -806,7 +821,7 @@ public class Juego {
 
             boolean igualarTurnos = false;
             boolean turnoDesigual = false;
-            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados()) {
+            while (!todosObjetivoDevorandoHuidizo() && !todosJugadoresEliminados() && !xObjetivoRestoEliminados() && !finalizarAVoluntad) {
                 if (!igualarTurnos) {
                     for (Zombie zombie : listaJugadores) {
                         if (zombie.getNumAcciones() > 0 && zombie.getNumAcciones() < 3) {
@@ -833,22 +848,24 @@ public class Juego {
                 pantallaJuego.setPanelControles(new PanelControlPredeterminado());
                 ArrayList<Humano> copiaListaHumanos = new ArrayList(this.getListaHumanos());
                 pantallaJuego.agregarEvento("********** TURNO HUMANOS **********");
-                for (Humano humano : copiaListaHumanos) {
-                    if (!listaJugadores.isEmpty()) {
-                        humano.activarse(this.tablero, this);
+                if (!finalizarAVoluntad) {
+                    for (Humano humano : copiaListaHumanos) {
+                        if (!listaJugadores.isEmpty()) {
+                            humano.activarse(this.tablero, this);
+                        }
                     }
-                }
-                for (int i = 0; i < this.getNumJug(); i++) {
-                    Random random = new Random();
-                    int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
-                    int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
-                    Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
-                    Casilla posicion = tablero.getCasilla(coor);
-                    Humano humano = Humano.aparicion(posicion);
-                    pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
-                    this.listaHumanos.add(humano);
-                    tablero.getCasilla(coor).getNumHumano().add(humano);
-                    //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    for (int i = 0; i < this.getNumJug(); i++) {
+                        Random random = new Random();
+                        int numeroAleatorio1 = random.nextInt(tablero.getFilas() - 1);
+                        int numeroAleatorio2 = random.nextInt(tablero.getColumnas() - 1);
+                        Coordenada coor = new Coordenada(numeroAleatorio1, numeroAleatorio2);
+                        Casilla posicion = tablero.getCasilla(coor);
+                        Humano humano = Humano.aparicion(posicion);
+                        pantallaJuego.agregarEvento("Ha aparecido un Humano " + humano.getClass().getSimpleName() + " en la posicion " + coor.toString());
+                        this.listaHumanos.add(humano);
+                        tablero.getCasilla(coor).getNumHumano().add(humano);
+                        //tablero.getCasilla(coor).setNumHumano(tablero.getCasilla(coor).getNumHumano());
+                    }
                 }
                 SwingUtilities.invokeLater(() -> pantallaJuego.actualizarTablero(this));
                 try {

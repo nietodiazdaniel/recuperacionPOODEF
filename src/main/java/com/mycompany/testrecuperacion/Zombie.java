@@ -220,9 +220,9 @@ public class Zombie implements Activable {
 
     @Override
     public void activarse(Tablero tablero, Juego juego) {
-        if ((estado.equals("ACTIVO")) && !(this.getCasilla().getCoordenada().equals(new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1)) && haDevoradoHuidizo())) { //CONDICION DE VIVO Y QUE NO ESTE MUERTO
+        if ((estado.equals("ACTIVO")) && !(this.getCasilla().getCoordenada().equals(new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1)) && haDevoradoHuidizo() && !juego.isFinalizarAVoluntad())) { //CONDICION DE VIVO Y QUE NO ESTE MUERTO
             juego.getPantallaJuego().agregarEvento("********** TURNO DE " + getNombre() + " **********");
-            while (this.getNumAcciones() < this.maxAcciones) {
+            while (this.getNumAcciones() < this.maxAcciones && !juego.isFinalizarAVoluntad()) {
                 //juego.getPantallaJuego().agregarEvento("ZOMBIE : " + this.getNombre() + " ACCIONES REALIZADAS: " + this.getNumAcciones() + "/3 NIVEL DE HAMBRE: " + this.getHambre());
                 //juego.getPantallaJuego().agregarEvento("Ingrese la accion que desea hacer (Atacar(1)/Moverse(2)/Buscar Comida(3)/No Hacer Nada(4)");
                 PanelTurnoJugador panelTurno = new PanelTurnoJugador(this.getNombre(), this.getNumAcciones(), this.getAtaqueEspecial().getAlcance());

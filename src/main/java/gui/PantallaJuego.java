@@ -130,6 +130,24 @@ public class PantallaJuego extends JFrame {
 
         menuBar.add(menuVisualizar);
         //**************************  MENU VISUALIZAR ******************************************************************************************
+        //**************************  MENU FINALIZAR ******************************************************************************************
+        JMenu menuFinalizar = new javax.swing.JMenu();
+        JMenuItem itemFinalizar = new javax.swing.JMenuItem();
+        menuFinalizar.setText("Finalizar");
+
+        itemFinalizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        itemFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SimboloSalir.png"))); // NOI18N
+        itemFinalizar.setText("Finalizar Partida");
+        itemFinalizar.setPreferredSize(new java.awt.Dimension(170, 32));
+        itemFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemFinalizarActionPerformed(evt);
+            }
+        });
+        menuFinalizar.add(itemFinalizar);
+        menuBar.add(menuFinalizar);
+        //**************************  MENU FINALIZAR ******************************************************************************************
+
         //**************************  MENU DEPURADOR ******************************************************************************************
         JMenu menuDepurador = new javax.swing.JMenu();
         JMenuItem itemCrearConejo = new javax.swing.JMenuItem();
@@ -148,7 +166,7 @@ public class PantallaJuego extends JFrame {
             }
         });
         menuDepurador.add(itemCrearConejo);
-        
+
         itemCrearZombi.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         itemCrearZombi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SimboloZombi.png"))); // NOI18N
         itemCrearZombi.setText("Crear Zombi");
@@ -159,7 +177,7 @@ public class PantallaJuego extends JFrame {
             }
         });
         menuDepurador.add(itemCrearZombi);
-        
+
         itemCrearHumano.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         itemCrearHumano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SimboloHumano.png"))); // NOI18N
         itemCrearHumano.setText("Crear Humano");
@@ -170,7 +188,7 @@ public class PantallaJuego extends JFrame {
             }
         });
         menuDepurador.add(itemCrearHumano);
-        
+
         itemCrearAtaque.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         itemCrearAtaque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SimboloAtaque.png"))); // NOI18N
         itemCrearAtaque.setText("Crear Ataque");
@@ -181,7 +199,7 @@ public class PantallaJuego extends JFrame {
             }
         });
         menuDepurador.add(itemCrearAtaque);
-        
+
         menuBar.add(menuDepurador);
         //**************************  MENU DEPURADOR ******************************************************************************************
         //************************** PANEL TABLERO******************************************************************************************
@@ -369,20 +387,27 @@ public class PantallaJuego extends JFrame {
     private void itemGuardarActionPerformed(java.awt.event.ActionEvent evt) {
         DialogGuardarPartida dialogG = new DialogGuardarPartida(null, this.juego);
     }
-    
+
     private void itemCrearConejoActionPerformed(java.awt.event.ActionEvent evt) {
-        DialogCrearConejo dialogC= new DialogCrearConejo(null,this.juego);
-    }
-    private void itemCrearHumanoActionPerformed(java.awt.event.ActionEvent evt) {
-        DialogCrearHumano dialogH= new DialogCrearHumano(null,this.juego);
-    }
-    private void itemCrearZombiActionPerformed(java.awt.event.ActionEvent evt) {
-        DialogCrearZombi dialogZ= new DialogCrearZombi(null,this.juego);
-    }
-    private void itemCrearAtaqueActionPerformed(java.awt.event.ActionEvent evt) {
-        DialogCrearAtaque dialogA= new DialogCrearAtaque(null,this.juego);
+        DialogCrearConejo dialogC = new DialogCrearConejo(null, this.juego);
     }
 
+    private void itemCrearHumanoActionPerformed(java.awt.event.ActionEvent evt) {
+        DialogCrearHumano dialogH = new DialogCrearHumano(null, this.juego);
+    }
+
+    private void itemCrearZombiActionPerformed(java.awt.event.ActionEvent evt) {
+        DialogCrearZombi dialogZ = new DialogCrearZombi(null, this.juego);
+    }
+
+    private void itemCrearAtaqueActionPerformed(java.awt.event.ActionEvent evt) {
+        DialogCrearAtaque dialogA = new DialogCrearAtaque(null, this.juego);
+        
+    }
+
+    private void itemFinalizarActionPerformed(java.awt.event.ActionEvent evt) {
+        this.juego.finalizarVoluntad();
+    }
 
     public static void main(String[] args) {
         // TODO code application logic here
