@@ -26,18 +26,12 @@ public abstract class Humano implements Comestible, Activable {
         return num_activaciones;
     }
 
-    public void setNum_activaciones(int num_activaciones) {
-        this.num_activaciones = num_activaciones;
-    }
 
     public int getAguante() {
         return aguante;
     }
 
-    public void setAguante(int aguante) {
-        this.aguante = aguante;
-    }
-
+   
     public Casilla getCasilla() {
         return casilla;
     }

@@ -24,9 +24,7 @@ public class Casilla {
         return this.coordenada;
     }
 
-    public void setCoordenada(Coordenada coordenada) {
-        this.coordenada = coordenada;
-    }
+   
     
     public ArrayList<Zombie> getNumZombie() {
         return numZombie;

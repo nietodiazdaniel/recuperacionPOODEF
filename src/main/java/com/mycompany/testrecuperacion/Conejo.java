@@ -41,25 +41,10 @@ public class Conejo implements Comestible {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(int identificador) {
-        this.identificador = identificador;
-    }
-
     public Casilla getCasilla() {
         return casilla;
     }
 
-    public void setCasilla(Casilla casilla) {
-        this.casilla = casilla;
-    }
     
      
     @Override

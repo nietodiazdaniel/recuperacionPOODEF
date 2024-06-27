@@ -49,38 +49,7 @@ public class Tablero {
         }
     }
 
-    public void imprimirTablero() {
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                String contenido = "";
-
-                if (!casillas[i][j].getNumZombie().isEmpty()) {
-                    for (Zombie zombie : casillas[i][j].getNumZombie()) {
-                        contenido += "Z:" + zombie.getNombre() + " ";
-                    }
-                }
-
-                if (!casillas[i][j].getNumConejos().isEmpty()) {
-                    for (Conejo conejo : casillas[i][j].getNumConejos()) {
-                        contenido += "C:" + conejo.getNombre() + " ";
-                    }
-                }
-
-                if (!casillas[i][j].getNumHumano().isEmpty()) {
-                    for (Humano humano : casillas[i][j].getNumHumano()) {
-                        contenido += "H:" + humano.getClass().getSimpleName() + " ";
-                    }
-                }
-
-                if (contenido.isEmpty()) {
-                    System.out.print("[  ] ");
-                } else {
-                    System.out.print("[" + contenido.trim() + "] ");
-                }
-            }
-            System.out.println();
-        }
-    }
+    
 
     public Casilla getCasilla(Coordenada coordenada) {
         return casillas[coordenada.getX()][coordenada.getY()];
@@ -90,21 +59,15 @@ public class Tablero {
         return filas;
     }
 
-    public void setFilas(int filas) {
-        this.filas = filas;
-    }
+    
 
     public int getColumnas() {
         return columnas;
     }
 
-    public void setColumnas(int columnas) {
-        this.columnas = columnas;
-    }
+    
 
-    public Casilla[][] getCasillas() {
-        return casillas;
-    }
+    
     
     
     

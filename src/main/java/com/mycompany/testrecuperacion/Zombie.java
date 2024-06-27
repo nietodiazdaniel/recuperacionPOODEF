@@ -97,10 +97,7 @@ public class Zombie implements Activable {
     public void setCasilla(Casilla casilla) {
         this.casilla = casilla;
     }
-    
-    public void incrementarAcciones() {
-        this.numAcciones++;
-    }
+   
 
     public void agregarHerida(String tipoHumano) {
         if (heridasRecibidas.size() < maxHeridas) {

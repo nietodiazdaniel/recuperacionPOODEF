@@ -23,17 +23,13 @@ public class Coordenada {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
+    
 
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
+    
     @Override
     public boolean equals (Object o){
         if (this==o){
@@ -45,9 +41,7 @@ public class Coordenada {
         Coordenada otraCoordenada= (Coordenada) o;
         return (x==otraCoordenada.getX() && y ==otraCoordenada.getY());
     }
-    public Coordenada copia(){
-        return new Coordenada(this.x,this.y);
-    }
+    
     
     //FALTARIA AÑADIR SI ESO SETYGET DE ZOMBIES Y SUPERVIVIENTES CND LOS TENGAMOS HECHOS
 
