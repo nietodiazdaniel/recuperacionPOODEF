@@ -20,32 +20,32 @@ public class Huidizo extends Humano {
     }
 
     @Override
-    public void moverse(Tablero tablero, Casilla posicion,Juego juego) {
+    public void moverse(Tablero tablero, Casilla posicion, Juego juego) {
         Casilla nueva;
         int xActual = this.getCasilla().getCoordenada().getX();
         int yActual = this.getCasilla().getCoordenada().getY();
-        int xLimite=tablero.getFilas()-1;
-        int yLimite=tablero.getColumnas()-1;
+        int xLimite = tablero.getFilas() - 1;
+        int yLimite = tablero.getColumnas() - 1;
         //SOLO SE PUEDE MOVER HACIA LA DERECHA O HACIA ABAJO
-        if((xActual<xLimite)&&(yActual<yLimite)){//ME PUEDO MOVER HACIA LA DERECHA O ABAJO
-            if((Math.abs(this.getCasilla().getCoordenada().getX() - posicion.getCoordenada().getX()) <= Math.abs(this.getCasilla().getCoordenada().getY() - posicion.getCoordenada().getY()))&&(yActual<yLimite)){
-                nueva=tablero.getCasilla(new Coordenada(this.getCasilla().getCoordenada().getX(), this.getCasilla().getCoordenada().getY() + 1));
-            }else if((Math.abs(this.getCasilla().getCoordenada().getX() - posicion.getCoordenada().getX()) > Math.abs(this.getCasilla().getCoordenada().getY() - posicion.getCoordenada().getY()))&&(yActual<yLimite)){
+        if ((xActual < xLimite) && (yActual < yLimite)) {//ME PUEDO MOVER HACIA LA DERECHA O ABAJO
+            if ((Math.abs(this.getCasilla().getCoordenada().getX() - posicion.getCoordenada().getX()) <= Math.abs(this.getCasilla().getCoordenada().getY() - posicion.getCoordenada().getY())) && (yActual < yLimite)) {
+                nueva = tablero.getCasilla(new Coordenada(this.getCasilla().getCoordenada().getX(), this.getCasilla().getCoordenada().getY() + 1));
+            } else if ((Math.abs(this.getCasilla().getCoordenada().getX() - posicion.getCoordenada().getX()) > Math.abs(this.getCasilla().getCoordenada().getY() - posicion.getCoordenada().getY())) && (yActual < yLimite)) {
                 nueva = tablero.getCasilla(new Coordenada(this.getCasilla().getCoordenada().getX() + 1, this.getCasilla().getCoordenada().getY()));
-            }else{
+            } else {
                 //NO SE MUEVE
                 nueva = tablero.getCasilla(new Coordenada(this.getCasilla().getCoordenada().getX(), this.getCasilla().getCoordenada().getY()));
             }
-        }else if(yActual<yLimite){
-            nueva=tablero.getCasilla(new Coordenada(this.getCasilla().getCoordenada().getX(), this.getCasilla().getCoordenada().getY() + 1));
-        }else if(xActual<xLimite){
+        } else if (yActual < yLimite) {
+            nueva = tablero.getCasilla(new Coordenada(this.getCasilla().getCoordenada().getX(), this.getCasilla().getCoordenada().getY() + 1));
+        } else if (xActual < xLimite) {
             nueva = tablero.getCasilla(new Coordenada(this.getCasilla().getCoordenada().getX() + 1, this.getCasilla().getCoordenada().getY()));
-        }else{
+        } else {
             //NO SE MUEVE
             nueva = tablero.getCasilla(new Coordenada(this.getCasilla().getCoordenada().getX(), this.getCasilla().getCoordenada().getY()));
-            
+
         }
-      
+
         int xDestino = nueva.getCoordenada().getX();
         int yDestino = nueva.getCoordenada().getY();
 
@@ -84,9 +84,9 @@ public class Huidizo extends Humano {
 
     @Override
     public void activarse(Tablero tablero, Juego juego) {
-        Casilla objetivo = new Casilla(new Coordenada(tablero.getFilas()-1,tablero.getColumnas()-1));
-        this.moverse(tablero, objetivo,juego);
-        if(this.getCasilla().getCoordenada().equals(objetivo.getCoordenada())){
+        Casilla objetivo = new Casilla(new Coordenada(tablero.getFilas() - 1, tablero.getColumnas() - 1));
+        this.moverse(tablero, objetivo, juego);
+        if (this.getCasilla().getCoordenada().equals(objetivo.getCoordenada())) {
             Casilla casillaActual = tablero.getCasilla(this.getCasilla().getCoordenada());
             ArrayList<Humano> humanosCasillaActual = casillaActual.getNumHumano();
             humanosCasillaActual.remove(this);
@@ -94,10 +94,7 @@ public class Huidizo extends Humano {
             juego.getListaHumanos().remove(this);
             juego.getPantallaJuego().agregarEvento("El humano huidizo se ha escapado.");
         }
-        SwingUtilities.invokeLater(()->juego.getPantallaJuego().actualizarTablero(juego));
-        
-        
+        SwingUtilities.invokeLater(() -> juego.getPantallaJuego().actualizarTablero(juego));
 
-        
     }
 }
