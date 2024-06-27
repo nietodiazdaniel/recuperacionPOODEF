@@ -526,7 +526,7 @@ public class Juego {
                                             break;
 
                                     }
-                                } else if (linea.startsWith("Conejo: ")) {
+                                } else if (linea.startsWith("Conejo:")) {
                                     String nombreCon = "";
                                     int identificador = 0;
                                     Coordenada coordenadaC = null;

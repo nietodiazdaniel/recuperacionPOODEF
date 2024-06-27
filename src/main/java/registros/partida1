@@ -1,124 +1,139 @@
-Numero de Jugadores: 2
+Numero de Jugadores: 4
 Lista de Zombies:
-Nombre: dani
+Nombre: adda
 Estado: ACTIVO
-Numero de Acciones: 3
-Numero de Comestibles Devorados: 2
+Numero de Acciones: 1
+Numero de Comestibles Devorados: 1
 Comestibles Devorados:
-Humano:
-Tipo: Huidizo
-Numero de Activaciones: 1
-Aguante: 1
-Casilla: (0, 0)
-Humano:
-Tipo: Especialista
-Numero de Activaciones: 2
-Aguante: 1
-Casilla: (3, 0)
-Numero de Comestibles Eliminados: 1
+Conejo:
+Nombre: PUTO
+Identificador: 2
+Casilla: (1, 1)
+Numero de Comestibles Eliminados: 0
 Comestibles Eliminados:
-Humano:
-Tipo: Blindado
-Numero de Activaciones: 1
-Aguante: 2
-Casilla: (4, 1)
+Numero de Heridas: 0
+Heridas Recibidas:
+Hambre: 0
+Ataque Especial:
+Nombre: Explosion de Putrefaccion
+Potencia: 4
+Valor de Exito: 3
+Alcance: 2
+Casilla: (1, 1)
+Nombre: frrf
+Estado: ACTIVO
+Numero de Acciones: 0
+Numero de Comestibles Devorados: 0
+Comestibles Devorados:
+Numero de Comestibles Eliminados: 0
+Comestibles Eliminados:
 Numero de Heridas: 1
 Heridas Recibidas:
 Especialista
-Hambre: 5
+Hambre: 1
 Ataque Especial:
 Nombre: Grito Mortal
 Potencia: 3
 Valor de Exito: 5
 Alcance: 3
-Casilla: (7, 7)
-Nombre: javi
+Casilla: (1, 2)
+Nombre: asad
 Estado: ACTIVO
-Numero de Acciones: 1
-Numero de Comestibles Devorados: 3
+Numero de Acciones: 0
+Numero de Comestibles Devorados: 0
 Comestibles Devorados:
-Humano:
-Tipo: Especialista
-Numero de Activaciones: 2
-Aguante: 1
-Casilla: (4, 1)
-Humano:
-Tipo: Blindado
-Numero de Activaciones: 1
-Aguante: 2
-Casilla: (6, 2)
-Humano:
-Tipo: Blindado
-Numero de Activaciones: 1
-Aguante: 2
-Casilla: (6, 5)
-Numero de Comestibles Eliminados: 3
+Numero de Comestibles Eliminados: 0
 Comestibles Eliminados:
-Humano:
-Tipo: Especialista
-Numero de Activaciones: 2
-Aguante: 1
-Casilla: (1, 0)
-Humano:
-Tipo: Informatico
-Numero de Activaciones: 1
-Aguante: 3
-Casilla: (4, 1)
-Humano:
-Tipo: Blindado
-Numero de Activaciones: 1
-Aguante: 2
-Casilla: (4, 1)
-Numero de Heridas: 1
+Numero de Heridas: 0
 Heridas Recibidas:
-Informatico
-Hambre: 0
+Hambre: 1
 Ataque Especial:
-Nombre: Sombra de la Muerte
+Nombre: Tsunami de Sangre
 Potencia: 3
 Valor de Exito: 3
-Alcance: 1
-Casilla: (6, 5)
-Numero de Conejos: 1
+Alcance: 2
+Casilla: (0, 0)
+Nombre: pijopq
+Estado: ACTIVO
+Numero de Acciones: 0
+Numero de Comestibles Devorados: 0
+Comestibles Devorados:
+Numero de Comestibles Eliminados: 0
+Comestibles Eliminados:
+Numero de Heridas: 0
+Heridas Recibidas:
+Hambre: 1
+Ataque Especial:
+Nombre: Grito Mortal
+Potencia: 3
+Valor de Exito: 5
+Alcance: 3
+Casilla: (0, 0)
+Numero de Conejos: 0
 Lista de Conejos:
-Nombre: Conejo Saltarin
-Identificador: 1
-Casilla: (2, 4)
-Numero de Humanos: 9
+Numero de Humanos: 16
 Lista de Humanos:
 Tipo: Blindado
 Numero de Activaciones: 1
 Aguante: 2
-Casilla: (5, 1)
-Tipo: Blindado
-Numero de Activaciones: 1
-Aguante: 2
-Casilla: (6, 2)
-Tipo: Especialista
-Numero de Activaciones: 2
-Aguante: 1
-Casilla: (6, 3)
-Tipo: Huidizo
-Numero de Activaciones: 1
-Aguante: 1
-Casilla: (2, 2)
+Casilla: (5, 5)
 Tipo: Informatico
 Numero de Activaciones: 1
 Aguante: 3
-Casilla: (7, 3)
+Casilla: (0, 6)
 Tipo: Blindado
 Numero de Activaciones: 1
 Aguante: 2
+Casilla: (5, 1)
+Tipo: Huidizo
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (4, 8)
+Tipo: Especialista
+Numero de Activaciones: 2
+Aguante: 1
 Casilla: (1, 2)
 Tipo: Blindado
 Numero de Activaciones: 1
 Aguante: 2
-Casilla: (4, 0)
-Tipo: Blindado
-Numero de Activaciones: 1
-Aguante: 2
-Casilla: (1, 3)
-Tipo: Blindado
-Numero de Activaciones: 1
-Aguante: 2
 Casilla: (0, 4)
+Tipo: Especialista
+Numero de Activaciones: 2
+Aguante: 1
+Casilla: (5, 5)
+Tipo: Informatico
+Numero de Activaciones: 1
+Aguante: 3
+Casilla: (2, 3)
+Tipo: Huidizo
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (8, 5)
+Tipo: Especialista
+Numero de Activaciones: 2
+Aguante: 1
+Casilla: (6, 6)
+Tipo: Huidizo
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (8, 8)
+Tipo: Huidizo
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (2, 2)
+Tipo: Huidizo
+Numero de Activaciones: 1
+Aguante: 1
+Casilla: (2, 6)
+Tipo: Blindado
+Numero de Activaciones: 1
+Aguante: 2
+Casilla: (7, 3)
+Tipo: Blindado
+Numero de Activaciones: 1
+Aguante: 2
+Casilla: (4, 7)
+Tipo: Especialista
+Numero de Activaciones: 2
+Aguante: 1
+Casilla: (4, 4)
